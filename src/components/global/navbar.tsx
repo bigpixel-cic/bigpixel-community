@@ -57,7 +57,7 @@ export default function Navbar() {
                   key={nav.label}
                   href={nav.slug || '#'}
                   scroll={false}
-                  className="font-semibold tracking-tight px-6 py-3 rounded-full bg-transparent hover:bg-metal-50/50 dark:hover:bg-black transition-colors ease-in-out duration-300"
+                  className="font-semibold tracking-tight px-6 py-3 rounded-full bg-transparent hover:bg-metal-100 dark:hover:bg-black transition-colors ease-in-out duration-300"
                 >
                   {nav.label}
                 </Link>
@@ -67,7 +67,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 scroll={false}
-                className="font-semibold text-purple-800 dark:text-purple-400 tracking-tight px-6 py-3 rounded-full bg-transparent hover:bg-purple-50/25 dark:hover:bg-black transition-colors ease-in-out duration-300"
+                className="font-semibold text-purple-800 dark:text-purple-400 tracking-tight px-6 py-3 rounded-full bg-transparent hover:bg-purple-100 dark:hover:bg-black transition-colors ease-in-out duration-300"
               >
                 Contact me
               </Link>
