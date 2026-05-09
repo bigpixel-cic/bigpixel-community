@@ -150,6 +150,7 @@
 :root {
   --background: oklch(98.51% 0 0); /* black-50 */
   --foreground: oklch(27.087% 0.02873 247.77); /* metal-800 */
+  isolation: isolate;
 }
 
 @media (prefers-color-scheme: dark) {
