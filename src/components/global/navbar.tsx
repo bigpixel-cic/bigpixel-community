@@ -24,7 +24,7 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="fixed top-2 lg:top-4 xl:top-9 w-full">
+    <header className="fixed top-2 lg:top-4 xl:top-9 w-full z-50">
       <div className="w-full max-w-7xl px-2 lg:px-4 xl:mx-auto">
         <Dialog.Root>
           <nav
@@ -41,6 +41,7 @@ export default function Navbar() {
                     height={40}
                     alt=""
                     className="size-8 lg:size-12"
+                    loading="eager"
                   />
                 </div>
               </Link>
@@ -67,9 +68,9 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 scroll={false}
-                className="font-semibold text-purple-800 dark:text-purple-400 tracking-tight px-6 py-3 rounded-full bg-transparent hover:bg-purple-100 dark:hover:bg-black transition-colors ease-in-out duration-300"
+                className="font-semibold text-white tracking-tight px-6 py-3 rounded-full bg-metal-800 hover:bg-metal-950 dark:hover:bg-black transition-colors ease-in-out duration-300"
               >
-                Contact me
+                Contact us
               </Link>
             </div>
           </nav>
@@ -86,6 +87,7 @@ export default function Navbar() {
                       height={40}
                       alt=""
                       className="size-8"
+                      loading="eager"
                     />
                   </div>
                 </Link>
@@ -110,9 +112,9 @@ export default function Navbar() {
                   <div className="py-6">
                     <Link
                       href="/contact"
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-purple-800 dark:text-purple-400"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 text-center font-semibold text-white bg-metal-800 hover:bg-metal-950 dark:hover:bg-black transition-colors ease-in-out duration-300"
                     >
-                      Contact me
+                      Contact us
                     </Link>
                   </div>
                 </div>
