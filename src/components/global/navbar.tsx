@@ -74,8 +74,8 @@ export default function Navbar() {
             </div>
           </nav>
           <Dialog.Portal className="lg:hidden">
-            <Dialog.Backdrop className="fixed inset-0 bg-white dark:bg-black-900 p-6 supports-[-webkit-touch-callout:none]:absolute" />
-            <Dialog.Popup className="fixed inset-0 p-6">
+            <Dialog.Backdrop className="fixed inset-0 bg-white dark:bg-black-900 p-6 supports-[-webkit-touch-callout:none]:absolute data-starting-style:-translate-x-full data-ending-style:-translate-x-full transition-all ease-in-out duration-200" />
+            <Dialog.Popup className="fixed inset-0 p-6 data-starting-style:-translate-x-full data-ending-style:-translate-x-full transition-all ease-in-out duration-200">
               <div className="flex items-center justify-between">
                 <Link href="/">
                   <div className="relative">
