@@ -34,19 +34,21 @@ export default function Services() {
       <div className="w-full max-w-7xl mx-auto p-4 lg:p-6">
         <div className="flex flex-col gap-y-12 md:gap-y-14 lg:gap-y-16">
           <h2 className="font-headline font-black text-4xl sm:text-5xl md:text-6xl text-green-200">
-            Services you actually need
+            Services we can provide
           </h2>
           <div className="grid grid-cols-3 gap-4 lg:gap-6">
             {services.map((service, index) => (
-              <BounceInFromTop key={service.key} delay={index * 0.2}>
-                <div className="col-span-3 md:col-span-1">
+              <div key={service.key} className="col-span-3 md:col-span-1">
+                <BounceInFromTop delay={index * 0.2}>
                   <div className="flex flex-col items-center text-center">
-                    <service.icon className={`size-40 mb-4 ${service.colour}`} />
+                    <service.icon
+                      className={`size-24 md:size-32 lg:size-40 mb-4 ${service.colour}`}
+                    />
                     <h3 className="font-headline font-bold text-3xl">{service.name}</h3>
                     <p className="mt-2">{service.description}</p>
                   </div>
-                </div>
-              </BounceInFromTop>
+                </BounceInFromTop>
+              </div>
             ))}
           </div>
         </div>

@@ -24,7 +24,7 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="fixed top-2 lg:top-4 xl:top-9 w-full z-50">
+    <header className="fixed top-2 lg:top-4 xl:top-9 w-full z-10">
       <div className="w-full max-w-7xl px-2 lg:px-4 xl:mx-auto">
         <Dialog.Root>
           <nav
@@ -75,8 +75,8 @@ export default function Navbar() {
             </div>
           </nav>
           <Dialog.Portal className="lg:hidden">
-            <Dialog.Backdrop className="fixed inset-0 bg-white dark:bg-black-900 p-6 supports-[-webkit-touch-callout:none]:absolute data-starting-style:-translate-x-full data-ending-style:-translate-x-full transition-all ease-in-out duration-200" />
-            <Dialog.Popup className="fixed inset-0 p-6 data-starting-style:-translate-x-full data-ending-style:-translate-x-full transition-all ease-in-out duration-200">
+            <Dialog.Backdrop className="z-10 fixed inset-0 bg-white dark:bg-black-900 p-6 supports-[-webkit-touch-callout:none]:absolute data-starting-style:-translate-x-full data-ending-style:-translate-x-full transition-all ease-in-out duration-200" />
+            <Dialog.Popup className="z-10 fixed inset-0 p-6 data-starting-style:-translate-x-full data-ending-style:-translate-x-full transition-all ease-in-out duration-200">
               <div className="flex items-center justify-between">
                 <Link href="/">
                   <div className="relative">

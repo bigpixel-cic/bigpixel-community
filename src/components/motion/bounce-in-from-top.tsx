@@ -8,7 +8,7 @@ export const BounceInFromTop: React.FC<{ children: React.ReactNode; delay?: numb
   delay = 0,
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 'all', once: false });
+  const isInView = useInView(ref, { amount: 'some', once: false });
 
   return (
     <motion.div
