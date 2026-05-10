@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { SlideInLeft } from '@/components/motion';
 
 export default function SectionOne() {
   return (
@@ -9,14 +10,16 @@ export default function SectionOne() {
             A CIC founded by someone who has been where you are now
           </h2>
           <div className="flex flex-col lg:flex-row items-center gap-6">
-            <Image
-              src="/assets/james-event.webp"
-              alt="James at an event when working for a charity"
-              width={540}
-              height={540}
-              className="rounded-lg object-cover"
-            />
-            <div className="text-xl md:text-2xl leading-normal">
+            <SlideInLeft>
+              <Image
+                src="/assets/james-event.webp"
+                alt="James at an event when working for a charity"
+                width={540}
+                height={540}
+                className="rounded-lg object-cover size-135"
+              />
+            </SlideInLeft>
+            <div className="flex-1 text-xl md:text-2xl leading-normal">
               <p>
                 Before starting Big Pixel® Community CIC, I spent twenty years in design and over a
                 decade working for a large UK charity. This means I know how organisations like
