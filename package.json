@@ -12,6 +12,7 @@
   "dependencies": {
     "@base-ui/react": "^1",
     "@notionhq/client": "^5",
+    "chart.js": "^4",
     "motion": "^12",
     "next": "^16",
     "react": "^19",
