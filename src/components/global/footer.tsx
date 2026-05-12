@@ -123,7 +123,7 @@ export default function Footer() {
         </div>
         <div className="mt-16 border-t border-metal-600 pt-8 sm:mt-20 lg:mt-24">
           <p className="text-sm/6 text-metal-400">
-            Big Pixel&reg; is a registered trademark in the United Kingdom.
+            Big Pixel&reg; and the device mark are registered trademarks in the United Kingdom.
           </p>
           <p className="text-sm/6 text-balance text-metal-400">
             A Community Interest Company registered in England and Wales, No. 17201222. Company

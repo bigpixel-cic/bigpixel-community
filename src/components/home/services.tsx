@@ -34,7 +34,7 @@ export default function Services() {
       <div className="w-full max-w-7xl mx-auto p-4 lg:p-6">
         <div className="flex flex-col gap-y-12 md:gap-y-14 lg:gap-y-16">
           <h2 className="font-headline font-black text-4xl sm:text-5xl md:text-6xl text-green-200">
-            Services we can provide
+            Solutions we can provide
           </h2>
           <div className="grid grid-cols-3 gap-4 lg:gap-6">
             {services.map((service, index) => (
