@@ -16,7 +16,7 @@ export default function SectionOne() {
                 alt="James at an event when working for a charity"
                 width={540}
                 height={540}
-                className="rounded-lg object-cover size-135"
+                className="rounded-lg object-cover w-135 h-135"
               />
             </SlideInLeft>
             <div className="flex-1 text-xl md:text-2xl leading-normal">

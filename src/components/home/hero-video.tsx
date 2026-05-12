@@ -1,7 +1,7 @@
 export default function HeroVideo() {
   return (
     <div className="relative h-screen overflow-hidden">
-      <div className="z-10 absolute top-0">
+      <div className="z-5 absolute top-0">
         <div className="h-screen w-screen flex items-end lg:items-center">
           <div className="w-full max-w-7xl mx-auto p-4 lg:p-6 items-start">
             <div className="w-full lg:w-2/3 flex flex-col gap-y-4 md:gap-y-6 lg:gap-y-9 xl:gap-y-12">

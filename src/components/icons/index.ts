@@ -1,8 +1,12 @@
 export { BarsIcon } from './bars';
+export { BlueSkyIcon } from './bluesky';
 export { BrowsersIcon } from './browsers';
 export { BullhornIcon } from './bullhorn';
 export { ChessIcon } from './chess';
 export { CircleCheckIcon } from './circle-check';
 export { CommentIcon } from './comment';
+export { FacebookIcon } from './facebook';
+export { GitHubIcon } from './github';
+export { LinkedInIcon } from './linkedin';
 export { PaintbrushIcon } from './paintbrush';
 export { XMarkIcon } from './xmark';

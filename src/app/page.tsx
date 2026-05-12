@@ -5,6 +5,7 @@ import Services from '@/components/home/services';
 import Prices from '@/components/home/prices';
 import Process from '@/components/home/process';
 import CTA from '@/components/home/cta';
+import Footer from '@/components/global/footer';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Prices />
       <Process />
       <CTA />
+      <Footer />
     </div>
   );
 }
