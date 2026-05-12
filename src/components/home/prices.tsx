@@ -18,8 +18,7 @@ export default function Prices() {
           <PricingTable />
           <p className="text-xl md:text-2xl leading-normal">
             Exact fees depend on the scope of the project. But your organisation&apos;s annual
-            income is the starting point, rather than your budget or what you think is a reasonable
-            thing to ask of someone.
+            income is the starting point, rather than your budget, or what you wish was your budget.
           </p>
         </div>
       </div>

@@ -3,6 +3,8 @@ import HeroVideo from '@/components/home/hero-video';
 import SectionOne from '@/components/home/section-one';
 import Services from '@/components/home/services';
 import Prices from '@/components/home/prices';
+import Process from '@/components/home/process';
+import CTA from '@/components/home/cta';
 
 export default function Home() {
   return (
@@ -12,6 +14,8 @@ export default function Home() {
       <SectionOne />
       <Services />
       <Prices />
+      <Process />
+      <CTA />
     </div>
   );
 }
