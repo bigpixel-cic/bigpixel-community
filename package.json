@@ -10,22 +10,24 @@
     "lint:fix": "eslint --fix"
   },
   "dependencies": {
-    "@base-ui/react": "^1",
-    "chart.js": "^4",
-    "motion": "^12",
-    "next": "^16",
-    "react": "^19",
-    "react-dom": "^19"
+    "@base-ui/react": "^1.4.1",
+    "@sanity/image-url": "^2.1.1",
+    "chart.js": "^4.5.1",
+    "motion": "^12.38.0",
+    "next": "^16.2.6",
+    "next-sanity": "^12.4.5",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "^4.3.0",
     "@tailwindcss/typography": "^0.5.19",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "^16",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@types/node": "^20.19.41",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.6",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^5.9.3"
   }
 }
