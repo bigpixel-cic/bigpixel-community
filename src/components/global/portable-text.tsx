@@ -1,6 +1,7 @@
 import { PortableText, type PortableTextComponents, type PortableTextBlock } from 'next-sanity';
 import ResolvedLink from '@/components/global/resolved-link';
 import Image from '@/components/global/sanity-image';
+import CldVideoPlayer from '@/components/global/video-player';
 
 export default function CustomPortableText({
   className,
@@ -42,6 +43,7 @@ export default function CustomPortableText({
               id={value.asset._ref}
               alt={value.alt || ''}
               width={1200}
+              sizes="(max-width: 768px) 100vw, (max-width:1200px) 75vw, 50vw"
               crop={value.crop}
               mode="cover"
               className="rounded-lg"
@@ -50,6 +52,19 @@ export default function CustomPortableText({
               <figcaption className="mt-1.5 text-metal-500 italic">{value.caption}</figcaption>
             )}
           </figure>
+        );
+      },
+      video: ({ value }) => {
+        if (!value?.url) {
+          return null;
+        }
+        return (
+          <CldVideoPlayer
+            id={value.public_id}
+            width={value.width}
+            height={value.height}
+            src={value.url}
+          />
         );
       },
     },

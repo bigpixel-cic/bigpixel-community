@@ -4,6 +4,7 @@ import { PROJECTS_QUERY } from '@/sanity/queries';
 import Image from 'next/image';
 import Link from 'next/link';
 import { urlFor } from '@/sanity/images';
+import { BoxGesture } from '@/components/motion';
 
 type Project = {
   _id: string;
@@ -62,32 +63,31 @@ export default async function Page() {
       </h1>
       <ul className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
         {projects.map((project: Project) => (
-          <li
-            key={project.slug}
-            className="rounded-lg bg-white shadow-md dark:divide-white/10 dark:bg-metal-800/50 dark:shadow-none dark:outline dark:-outline-offset-1 dark:outline-white/10 hover:scale-105 transition-transform duration-300 ease-out"
-          >
-            <Link
-              href={`/projects/${project.slug}`}
-              className="divide-y divide-metal-200 overflow-hidden"
-            >
-              <div className="relative overflow-hidden rounded-t-lg">
-                {project.coverImage && (
-                  <div className="relative aspect-video w-full rounded-md bg-gray-50">
-                    <Image
-                      src={urlFor(project.coverImage).width(800).height(450).url()}
-                      alt={project.altText || project.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-              </div>
-              <div className="px-4 py-4 sm:px-6">
-                <h2 className="font-headline font-bold text-xl">{project.title}</h2>
-                {project.subtitle && <p className="text-sm text-gray-600">{project.subtitle}</p>}
-              </div>
-            </Link>
-          </li>
+          <BoxGesture key={project._id}>
+            <li className="h-full rounded-lg bg-white shadow-md dark:divide-white/10 dark:bg-metal-800/50 dark:shadow-none dark:outline dark:-outline-offset-1 dark:outline-white/10">
+              <Link
+                href={`/projects/${project.slug}`}
+                className="divide-y divide-metal-200 overflow-hidden"
+              >
+                <div className="relative overflow-hidden rounded-t-lg">
+                  {project.coverImage && (
+                    <div className="relative aspect-video w-full rounded-md bg-gray-50">
+                      <Image
+                        src={urlFor(project.coverImage).width(800).height(450).url()}
+                        alt={project.altText || project.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="px-4 py-4 sm:px-6">
+                  <h2 className="font-headline font-bold text-xl">{project.title}</h2>
+                  {project.subtitle && <p className="text-sm text-gray-600">{project.subtitle}</p>}
+                </div>
+              </Link>
+            </li>
+          </BoxGesture>
         ))}
       </ul>
       <h2 className="font-headline font-bold text-metal-500 text-2xl mt-8">

@@ -6,6 +6,7 @@ import { PROJECTS_SLUGS_QUERY, PROJECT_QUERY, PROJECT_METADATA_QUERY } from '@/s
 import { urlFor } from '@/sanity/images';
 import ProjectDetails from '@/components/projects/details';
 import PortableText from '@/components/global/portable-text';
+import { SlideInTop } from '@/components/motion';
 
 import { type PortableTextBlock } from 'next-sanity';
 
@@ -69,14 +70,17 @@ export default async function Page(props: Props) {
           width={1200}
           height={630}
           className="w-full h-auto rounded-lg"
+          loading="eager"
         />
       )}
-      <ProjectDetails
-        client={project.client}
-        date={project.date}
-        category={project.category}
-        caseStudy={project.caseStudy}
-      />
+      <SlideInTop>
+        <ProjectDetails
+          client={project.client}
+          date={project.date}
+          category={project.category}
+          caseStudy={project.caseStudy}
+        />
+      </SlideInTop>
       <PortableText
         value={project.content as PortableTextBlock[]}
         className="prose-metal dark:prose-invert max-w-none prose-sm md:prose-base lg:prose-lg xl:prose-xl"

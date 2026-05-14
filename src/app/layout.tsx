@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import '@/styles/globals.css';
 
+import 'next-cloudinary/dist/cld-video-player.css';
+
 const bigPixel = {
   name: 'Big Pixel Community CIC',
   url: 'https://bigpixel.org.uk',
