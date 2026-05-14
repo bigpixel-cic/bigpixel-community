@@ -4,11 +4,15 @@ export const PROJECTS_QUERY = defineQuery(
   `*[_type == "project" && defined(slug.current)][0...12]{
     _id,
     title,
-    slug,
-    description,
+    "slug": slug.current,
+    subtitle,
     "coverImage": coverImage.asset->url,
-    "altText": coverImage.altText
+    "altText": coverImage.alt
   }`
+);
+
+export const PROJECTS_SLUGS_QUERY = defineQuery(
+  `*[_type == "project" && defined(slug.current)].slug.current`
 );
 
 export const PROJECT_QUERY = defineQuery(
@@ -16,10 +20,14 @@ export const PROJECT_QUERY = defineQuery(
     _id,
     title,
     "slug": slug.current,
+    date,
+    client,
     "category": category->name,
+    "colour": category->colour,
     "tags": tags[]->name,
     "coverImage": coverImage.asset->url,
     "altText": coverImage.altText,
+    "caseStudy": caseStudy.asset->url,
     content,
   }`
 );

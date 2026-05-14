@@ -156,7 +156,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: oklch(13% 0.028 252.61); /* metal-950 */
+    --background: oklch(20.643% 0.03187 255.58); /* metal-900 */
     --foreground: oklch(98.5% 0.002 238.76); /* metal-50 */
   }
 }
@@ -185,7 +185,7 @@ body {
   --tw-prose-th-borders: var(--color-metal-300);
   --tw-prose-td-borders: var(--color-metal-200);
   --tw-prose-invert-body: var(--color-metal-200);
-  --tw-prose-invert-headings: var(--color-purple-50);
+  --tw-prose-invert-headings: var(--color-purple-300);
   --tw-prose-invert-lead: var(--color-metal-300);
   --tw-prose-invert-links: var(--color-white);
   --tw-prose-invert-bold: var(--color-white);

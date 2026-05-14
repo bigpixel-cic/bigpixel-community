@@ -2,8 +2,8 @@ import Testimonial from '@/components/global/testimonial';
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col gap-6 lg:gap-12">
-      <article className="mx-auto prose md:prose-lg 2xl:prose-xl prose-headings:font-headline prose-h1:text-metal-600 prose-h1:font-black prose-metal">
+    <div className="flex flex-col items-start gap-8 lg:gap-12">
+      <article className="mx-auto prose md:prose-lg 2xl:prose-xl prose-headings:font-headline prose-h1:text-metal-950 prose-h1:font-black prose-metal dark:prose-invert dark:prose-h1:text-metal-50">
         <h1>About Big Pixel&reg; Community CIC</h1>
         <h2>We exist because the digital gap shouldn&#39;t</h2>
         <p>
@@ -73,8 +73,8 @@ export default function AboutPage() {
           please get in touch.
         </p>
 
-        <div className="not-prose mt-8 bg-purple-50 rounded-xl p-6 lg:p-10 shadow-md">
-          <div className="flex flex-col gap-4 text-lg lg:text-xl text-black font-medium">
+        <div className="not-prose mt-8 bg-purple-50 dark:bg-purple-800 rounded-xl p-6 lg:p-10 shadow-md">
+          <div className="flex flex-col gap-4 text-lg lg:text-xl text-black dark:text-white font-medium">
             <p>
               When I first set up Big Pixel®, it was with the thought that I would create a massive
               consultancy, get stinking rich, write many books on how great I was.
@@ -90,7 +90,7 @@ export default function AboutPage() {
               that are helping make the world a better place, without taking half their budget in
               the process.
             </p>
-            <p className="text-sm lg:text-base font-extrabold text-purple-950">
+            <p className="text-sm lg:text-base font-extrabold text-purple-950 dark:text-purple-300">
               James Beston, Founder
             </p>
           </div>

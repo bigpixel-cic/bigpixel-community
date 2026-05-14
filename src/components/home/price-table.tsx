@@ -33,10 +33,10 @@ const bands = [
 
 export default function PricingTable() {
   return (
-    <div className="w-full overflow-x-auto rounded-lg border border-metal-200">
+    <div className="w-full overflow-x-auto rounded-lg border border-metal-200 dark:border-metal-700">
       <table className="w-full text-sm text-left border-collapse">
         <thead>
-          <tr className="bg-metal-500 text-white">
+          <tr className="bg-metal-500 dark:bg-metal-700 text-white">
             <th scope="col" className="px-6 py-4 font-semibold text-base tracking-tight w-1/2">
               Annual income
             </th>
@@ -47,11 +47,16 @@ export default function PricingTable() {
         </thead>
         <tbody>
           {bands.map((band, index) => (
-            <tr key={band.income} className={index % 2 === 0 ? 'bg-white' : 'bg-metal-100'}>
-              <td className="px-6 py-4 font-medium text-gray-900 border-b border-metal-100">
+            <tr
+              key={band.income}
+              className={
+                index % 2 === 0 ? 'bg-white dark:bg-metal-900' : 'bg-metal-100 dark:bg-metal-800'
+              }
+            >
+              <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100 border-b border-metal-100 dark:border-metal-700">
                 {band.income}
               </td>
-              <td className="px-6 py-4 text-gray-700 border-b border-metal-100">
+              <td className="px-6 py-4 text-gray-700 dark:text-gray-300 border-b border-metal-100 dark:border-metal-700">
                 {band.contribution}
               </td>
             </tr>
