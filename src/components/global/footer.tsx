@@ -26,13 +26,12 @@ const socials = [
 ];
 
 const solutions = [
-  { name: 'Websites', url: '#' },
-  { name: 'Digital strategy', url: '#' },
-  { name: 'Branding', url: '#' },
+  { name: 'Projects', url: '/projects' },
+  { name: 'Our Services', url: '/services' },
 ];
 
 const company = [
-  { name: 'About', url: '#' },
+  { name: 'About', url: '/about' },
   { name: 'Business Plan', url: '#' },
   { name: 'News', url: '#' },
 ];
