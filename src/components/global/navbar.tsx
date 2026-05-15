@@ -1,32 +1,37 @@
+'use client';
+
+import { useState } from 'react';
 import { Dialog } from '@base-ui/react/dialog';
 import Link from 'next/link';
 import Image from 'next/image';
 import { BarsIcon, XMarkIcon } from '@/components/icons';
 
+const navList = [
+  {
+    label: 'About Big Pixel®',
+    slug: '/about',
+  },
+  {
+    label: 'Projects',
+    slug: '/projects',
+  },
+  {
+    label: 'Services',
+    slug: '/services',
+  },
+  {
+    label: 'News',
+    slug: '/news',
+  },
+];
+
 export default function Navbar() {
-  const navList = [
-    {
-      label: 'About Big Pixel®',
-      slug: '/about',
-    },
-    {
-      label: 'Projects',
-      slug: '/projects',
-    },
-    {
-      label: 'Services',
-      slug: '/services',
-    },
-    {
-      label: 'News',
-      slug: '/news',
-    },
-  ];
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <header className="fixed top-2 lg:top-4 xl:top-9 w-full z-10">
       <div className="w-full max-w-7xl px-2 lg:px-4 xl:mx-auto">
-        <Dialog.Root>
+        <Dialog.Root open={open} onOpenChange={setOpen}>
           <nav
             aria-label="Global"
             className="w-full p-2 lg:p-4 bg-white/60 dark:bg-black/60 rounded-2xl lg:rounded-full outline-1 outline-metal-100 dark:outline-metal-950 backdrop-blur-sm inline-flex justify-between items-center overflow-hidden shadow-lg shadow-metal-300/30 dark:shadow-black/60"
@@ -58,6 +63,7 @@ export default function Navbar() {
                   key={nav.label}
                   href={nav.slug || '#'}
                   scroll={false}
+                  onClick={() => setOpen(false)}
                   className="font-semibold tracking-tight px-6 py-3 rounded-full bg-transparent hover:bg-metal-100 dark:hover:bg-black transition-colors ease-in-out duration-300"
                 >
                   {nav.label}
@@ -68,6 +74,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 scroll={false}
+                onClick={() => setOpen(false)}
                 className="font-semibold text-white tracking-tight px-6 py-3 rounded-full bg-metal-800 hover:bg-metal-950 dark:hover:bg-black transition-colors ease-in-out duration-300"
               >
                 Contact us
@@ -103,6 +110,7 @@ export default function Navbar() {
                       <Link
                         key={nav.label}
                         href={nav.slug || '#'}
+                        onClick={() => setOpen(false)}
                         className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold"
                       >
                         {nav.label}
@@ -112,6 +120,7 @@ export default function Navbar() {
                   <div className="py-6">
                     <Link
                       href="/contact"
+                      onClick={() => setOpen(false)}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base/7 text-center font-semibold text-white bg-metal-800 hover:bg-metal-950 dark:hover:bg-black transition-colors ease-in-out duration-300"
                     >
                       Contact us

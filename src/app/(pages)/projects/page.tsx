@@ -76,6 +76,7 @@ export default async function Page() {
                         src={urlFor(project.coverImage).width(800).height(450).url()}
                         alt={project.altText || project.title}
                         fill
+                        sizes="(max-width: 1024px) 100vw, 33vw"
                         className="object-cover"
                       />
                     </div>

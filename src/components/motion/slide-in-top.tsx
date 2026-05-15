@@ -5,7 +5,7 @@ import { useRef } from 'react';
 
 export const SlideInTop: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 'some', once: false });
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
     <motion.div

@@ -13,7 +13,7 @@ export default function ProjectDetails({
   caseStudy: string;
 }) {
   return (
-    <div className="-mt-2 md:-mt-24 lg:-mt-48 ml-0 md:ml-16 bg-blue-200/80 dark:bg-blue-800/80 backdrop-blur-sm p-6 rounded-lg shadow-lg w-full md:w-fit">
+    <div className="-mt-12 md:-mt-24 lg:-mt-48 ml-4 md:ml-16 bg-blue-200/80 dark:bg-blue-800/80 backdrop-blur-sm p-4 md:p-6 rounded-lg shadow-lg">
       <div className="flex flex-col gap-4">
         <h2 className="text-blue-950 dark:text-blue-50 font-extrabold text-lg md:text-xl lg:text-2xl">
           Project Details

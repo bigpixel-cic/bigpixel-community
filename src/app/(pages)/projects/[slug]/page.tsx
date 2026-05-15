@@ -59,7 +59,7 @@ export default async function Page(props: Props) {
   }
 
   return (
-    <div className="flex flex-col items-start gap-8 lg:gap-12">
+    <div className="flex flex-col items-start gap-8 lg:gap-12 w-full">
       <h1 className="font-headline font-black text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
         {project.title}
       </h1>

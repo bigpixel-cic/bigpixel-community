@@ -12,16 +12,16 @@ const services = [
   },
   {
     key: 2,
-    name: 'Web Development',
-    colour: 'text-yellow-300',
+    name: 'Web Design',
+    colour: 'text-orange-300',
     icon: BrowsersIcon,
     description:
       'Whether you need online donation forms,event registration,member portals,newsletter integration, or something entirely bespoke, we build fully-accessible websites and web apps around the way you work.',
   },
   {
     key: 3,
-    name: 'Brand Design',
-    colour: 'text-purple-300',
+    name: 'Graphic Design',
+    colour: 'text-violet-300',
     icon: PaintbrushIcon,
     description:
       'Logos, colour systems, typography, reports, and campaign materials that communicate who you are clearly and consistently across your website, your annual report, your social channels, and everything in between.',

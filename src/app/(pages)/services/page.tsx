@@ -1,3 +1,5 @@
+import ServiceList from '@/components/services/service-list';
+
 export default function ServicesPage() {
   return (
     <div className="flex flex-col items-start gap-8 lg:gap-12">
@@ -21,7 +23,9 @@ export default function ServicesPage() {
           and the constant tension between ambition and budget.
         </p>
         <h2>What we can help with</h2>
-        <div className="not-prose mt-8 flex flex-col gap-4 lg:gap-8">Service list here</div>
+        <div className="not-prose mt-8 flex flex-col gap-4 lg:gap-8">
+          <ServiceList />
+        </div>
       </article>
     </div>
   );
