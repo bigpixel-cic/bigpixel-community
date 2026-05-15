@@ -20,7 +20,10 @@
     "next-sanity": "^12.4.5",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "sanity-image": "^1.1.0"
+    "react-email": "^6.1.4",
+    "resend": "^6.12.3",
+    "sanity-image": "^1.1.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.0",

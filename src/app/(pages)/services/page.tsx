@@ -1,4 +1,47 @@
+import type { Metadata } from 'next';
 import ServiceList from '@/components/services/service-list';
+
+const bigPixel = {
+  url: process.env.NODE_ENV === 'production' ? 'https://bigpixel.org.uk' : 'http://localhost:3000',
+  title: 'Our Services',
+  description:
+    'Explore the services offered by Big Pixel, web development, strategy, and design for charities, non-profits, and social enterprises.',
+};
+
+export const metadata: Metadata = {
+  title: bigPixel.title,
+  description: bigPixel.description,
+  keywords: ['digital services for charities', 'charity web design', 'charity web development'],
+  openGraph: {
+    title: `${bigPixel.title} - Big Pixel`,
+    description: bigPixel.description,
+    url: `${bigPixel.url}/services`,
+    siteName: 'Big Pixel',
+    images: [
+      {
+        url: `${bigPixel.url}/og/og-services.png`,
+        width: 1200,
+        height: 630,
+        alt: bigPixel.title,
+      },
+    ],
+    locale: 'en_GB',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${bigPixel.title} - Big Pixel`,
+    description: bigPixel.description,
+    images: [
+      {
+        url: `${bigPixel.url}/og/og-services.png`,
+        width: 1200,
+        height: 675,
+        alt: bigPixel.title,
+      },
+    ],
+  },
+};
 
 export default function ServicesPage() {
   return (

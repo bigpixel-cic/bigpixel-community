@@ -15,23 +15,28 @@ type Project = {
   altText?: string;
 };
 
-export const metadata: Metadata = {
+const bigPixel = {
+  url: process.env.NODE_ENV === 'production' ? 'https://bigpixel.org.uk' : 'http://localhost:3000',
   title: 'Projects',
   description:
     'Explore the projects portfolio of Big Pixel, showcasing innovative digital services for charities, non-profits, and social enterprises.',
+};
+
+export const metadata: Metadata = {
+  title: bigPixel.title,
+  description: bigPixel.description,
   keywords: ['digital services for charities', 'charity web design', 'charity web development'],
   openGraph: {
-    title: 'Projects - Big Pixel',
-    description:
-      'Explore the projects portfolio of Big Pixel, showcasing innovative digital services for charities, non-profits, and social enterprises.',
-    url: 'https://bigpixel.org.uk/projects',
+    title: `${bigPixel.title} - Big Pixel`,
+    description: bigPixel.description,
+    url: `${bigPixel.url}/projects`,
     siteName: 'Big Pixel',
     images: [
       {
-        url: 'https://bigpixel.org.uk/og/og-projects.png',
+        url: `${bigPixel.url}/og/og-projects.png`,
         width: 1200,
         height: 630,
-        alt: 'Projects',
+        alt: bigPixel.title,
       },
     ],
     locale: 'en_GB',
@@ -39,15 +44,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Projects - Big Pixel',
-    description:
-      'Explore the projects portfolio of Big Pixel, showcasing innovative digital services for charities, non-profits, and social enterprises.',
+    title: `${bigPixel.title} - Big Pixel`,
+    description: bigPixel.description,
     images: [
       {
-        url: 'https://bigpixel.org.uk/og/og-projects.png',
+        url: `${bigPixel.url}/og/og-projects.png`,
         width: 1200,
         height: 675,
-        alt: 'Projects',
+        alt: bigPixel.title,
       },
     ],
   },

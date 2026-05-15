@@ -16,6 +16,7 @@ export default function SectionOne() {
                 alt="James at an event when working for a charity"
                 width={540}
                 height={540}
+                loading="eager"
                 className="rounded-lg object-cover w-135 h-135"
               />
             </SlideInLeft>

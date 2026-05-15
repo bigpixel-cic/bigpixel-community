@@ -6,7 +6,7 @@ import 'next-cloudinary/dist/cld-video-player.css';
 
 const bigPixel = {
   name: 'Big Pixel Community CIC',
-  url: 'https://bigpixel.org.uk',
+  url: process.env.NODE_ENV === 'production' ? 'https://bigpixel.org.uk' : 'http://localhost:3000',
   title: 'Big Pixel | Digital Services for Charities, Non-Profits & Social Enterprises',
   description:
     "A social enterprise offering agency-level design and development to charities, non-profits and social enterprises, with fees scaled to your organisation's income",
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     siteName: 'Big Pixel',
     images: [
       {
-        url: 'https://bigpixel.org.uk/og/og-default.png',
+        url: `${bigPixel.url}/og/og-default.png`,
         width: 1200,
         height: 630,
         alt: bigPixel.title,
@@ -97,7 +97,7 @@ export const metadata: Metadata = {
     description: bigPixel.description,
     images: [
       {
-        url: 'https://bigpixel.org.uk/og/og-default.png',
+        url: `${bigPixel.url}/og/og-default.png`,
         width: 1200,
         height: 675,
         alt: bigPixel.title,
@@ -111,7 +111,7 @@ const organizationSchema = {
   '@type': 'Organization',
   name: bigPixel.name,
   url: bigPixel.url,
-  logo: 'https://bigpixel.org.uk/brand/big-pixel-full-black.png',
+  logo: `${bigPixel.url}/brand/big-pixel-full-black.png`,
   description: bigPixel.description,
   founder: { '@type': 'Person', name: 'James Beston' },
   areaServed: 'Norfolk, UK',
