@@ -37,8 +37,9 @@ const company = [
 ];
 
 const legal = [
-  { name: 'Privacy Policy', url: '#' },
-  { name: 'Terms of Service', url: '#' },
+  { name: 'Privacy Policy', url: '/privacy' },
+  { name: 'Cookie Policy', url: '/cookie' },
+  { name: 'Terms of Use', url: '/terms' },
 ];
 
 export default function Footer() {
