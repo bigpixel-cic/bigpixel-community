@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import '@/styles/globals.css';
 
 import 'next-cloudinary/dist/cld-video-player.css';
+import { ConsentManager } from "../components/consent-manager";
 
 const bigPixel = {
   name: 'Big Pixel Community CIC',
@@ -138,18 +139,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${nexa.variable} ${nexaText.variable} h-full antialiased`}>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-        />
-      </head>
-      <body className="min-h-full flex flex-col">{children}</body>
-    </html>
-  );
+        <html lang="en" className={`${nexa.variable} ${nexaText.variable} h-full antialiased`}>
+          <head>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+            />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+            />
+          </head>
+          <body className="min-h-full flex flex-col">
+    		<ConsentManager>
+    			{children}
+    		</ConsentManager>
+    	</body>
+        </html>
+      )
 }

@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
+    "@c15t/dev-tools": "^2.1.0",
+    "@c15t/nextjs": "^2.1.0",
     "@sanity/image-url": "^2.1.1",
     "chart.js": "^4.5.1",
     "date-fns": "^4.1.0",
