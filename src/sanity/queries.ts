@@ -7,7 +7,8 @@ export const PROJECTS_QUERY = defineQuery(
     "slug": slug.current,
     subtitle,
     "coverImage": coverImage.asset->url,
-    "altText": coverImage.alt
+    "altText": coverImage.alt,
+    "dateModified": coalesce(_createdAt, _updatedAt),
   }`
 );
 
