@@ -32,7 +32,7 @@ const solutions = [
 
 const company = [
   { name: 'About', url: '/about' },
-  { name: 'Business Plan', url: '#' },
+  /* { name: 'Business Plan', url: '#' }, */
   { name: 'News', url: '#' },
 ];
 

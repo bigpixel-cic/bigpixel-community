@@ -16,6 +16,13 @@ export async function sendContactEmail(
   _prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
+  const honeypot = formData.get('emailFirst') as string;
+  if (honeypot) {
+    return {
+      success: false,
+      serverErrors: { general: 'Spam detected' },
+    };
+  }
   const name = formData.get('name') as string;
   const email = formData.get('email') as string;
   const message = formData.get('message') as string;

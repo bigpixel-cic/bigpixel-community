@@ -48,6 +48,10 @@ export default function ContactForm() {
       className="bg-white shadow-xs outline outline-metal-900/5 sm:rounded-xl h-120 md:aspect-square w-full md:max-w-xl dark:bg-metal-950/50 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10"
     >
       <div className="px-4 py-6 sm:p-8 space-y-8">
+        <div className="hidden">
+          <label htmlFor="emailFirst">Email</label>
+          <input id="emailFirst" type="email" autoComplete="off" />
+        </div>
         <TextInput name="name" label="Name" placeholder="Alan Turing" minLength={3} />
         <EmailInput name="email" label="Email" placeholder="alan.turing@example.com" />
         <TextArea
