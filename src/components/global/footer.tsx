@@ -15,7 +15,7 @@ const socials = [
   },
   {
     name: 'BlueSky',
-    url: '#',
+    url: 'https://bsky.app/profile/bigpixel.org.uk',
     icon: BlueSkyIcon,
   },
   {

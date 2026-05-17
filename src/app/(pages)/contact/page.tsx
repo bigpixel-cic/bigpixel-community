@@ -75,17 +75,17 @@ const contactData = [
 const socialData = [
   {
     type: 'BlueSky',
-    value: 'https://bsky.app/profile/bigpixel.bsky.social',
+    value: 'https://bsky.app/profile/bigpixel.org.uk',
     icon: BlueSkyIcon,
   },
   {
     type: 'LinkedIn',
-    value: 'https://www.linkedin.com/company/big-pixel/',
+    value: 'https://www.linkedin.com/company/bigpixel-cic',
     icon: LinkedInIcon,
   },
   {
     type: 'Facebook',
-    value: 'https://www.facebook.com/bigpixeluk',
+    value: 'https://www.facebook.com/bigpixelcic',
     icon: FacebookIcon,
   },
 ];
