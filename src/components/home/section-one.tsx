@@ -22,18 +22,18 @@ export default function SectionOne() {
             </SlideInLeft>
             <div className="flex-1 text-xl md:text-2xl leading-normal">
               <p>
-                Before starting Big Pixel® Community CIC, I spent twenty years in design and over a
-                decade working for a large UK charity. This means I know how organisations like
-                yours actually work.
+                Before starting Big Pixel<sup>&reg;</sup> Community CIC, I spent twenty years in
+                design and over a decade working for a large UK charity. This means I know how
+                organisations like yours actually work.
               </p>
               <p className="mt-6">
                 I know about the funding cycles, the trustee decisions, the gap between what you
                 want your website to do and what your budget allows.
               </p>
               <p className="mt-6">
-                At Big Pixel®, our mission is to close the digital gap and bring the commercially
-                recognised benefits of digital strategy, design, and development to the non-profit
-                sector, helping you achieve your true potential.
+                At Big Pixel<sup>&reg;</sup>, our mission is to close the digital gap and bring the
+                commercially recognised benefits of digital strategy, design, and development to the
+                non-profit sector, helping you achieve your true potential.
               </p>
             </div>
           </div>
@@ -43,12 +43,13 @@ export default function SectionOne() {
           <div className="text-xl md:text-2xl leading-normal">
             <p>
               ☝️ That isn&apos;t just a nice phrase. I <em>genuinely</em> want to do things
-              differently. That is why I set up Big Pixel® as a CIC at the start of 2026.
+              differently. That is why I set up Big Pixel<sup>&reg;</sup> as a CIC at the start of
+              2026.
             </p>
             <p className="mt-6">
               After studying digital strategy at Henley Business School, and then talking to
               charities and social enterprises in and around Norwich, I realised that real,
-              substantive digital support at a price nonprofits can actually budget for is
+              substantive digital support at a price non-profits can actually budget for is
               practically non-existent.
             </p>
             <p className="mt-6">

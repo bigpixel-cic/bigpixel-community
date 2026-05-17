@@ -1,10 +1,55 @@
 import Testimonial from '@/components/global/testimonial';
+import type { Metadata } from 'next';
+
+const bigPixel = {
+  url: process.env.NODE_ENV === 'production' ? 'https://bigpixel.org.uk' : 'http://localhost:3000',
+  title: 'About',
+  description:
+    'Learn more about Big Pixel and our innovative digital services for charities, non-profits, and social enterprises.',
+};
+
+export const metadata: Metadata = {
+  title: bigPixel.title,
+  description: bigPixel.description,
+  keywords: ['digital services for charities', 'charity web design', 'charity web development'],
+  openGraph: {
+    title: `${bigPixel.title} - Big Pixel`,
+    description: bigPixel.description,
+    url: `${bigPixel.url}/about`,
+    siteName: 'Big Pixel',
+    images: [
+      {
+        url: `${bigPixel.url}/og/og-about.png`,
+        width: 1200,
+        height: 630,
+        alt: bigPixel.title,
+      },
+    ],
+    locale: 'en_GB',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${bigPixel.title} - Big Pixel`,
+    description: bigPixel.description,
+    images: [
+      {
+        url: `${bigPixel.url}/og/og-about.png`,
+        width: 1200,
+        height: 675,
+        alt: bigPixel.title,
+      },
+    ],
+  },
+};
 
 export default function AboutPage() {
   return (
     <div className="flex flex-col items-start gap-8 lg:gap-12">
       <article className="mx-auto prose md:prose-lg 2xl:prose-xl prose-headings:font-headline prose-h1:text-metal-950 prose-h1:font-black prose-metal dark:prose-invert dark:prose-h1:text-metal-50">
-        <h1>About Big Pixel&reg; Community CIC</h1>
+        <h1>
+          About Big Pixel<sup>&reg;</sup> Community CIC
+        </h1>
         <h2>We exist because the digital gap shouldn&#39;t</h2>
         <p>
           Solid digital work changes things. A well-built website helps a charity find more
@@ -16,7 +61,9 @@ export default function AboutPage() {
           The annoying thing is that charities know this. They just don&#39;t have the budget to
           employ an agency to help them with it.
         </p>
-        <p>Big Pixel® exists to close that gap.</p>
+        <p>
+          Big Pixel<sup>&reg;</sup> exists to close that gap.
+        </p>
         <Testimonial
           quote="We really appreciate the work Big Pixel did with us, particularly on the Mailchimp project. Their support has helped us put stronger foundations in place, and the improvements to structure and usability have made a clear difference for the team."
           organisation="Calibre Audio"
@@ -76,8 +123,8 @@ export default function AboutPage() {
         <div className="not-prose mt-8 bg-purple-50 dark:bg-purple-800 rounded-xl p-6 lg:p-10 shadow-md">
           <div className="flex flex-col gap-4 text-lg lg:text-xl text-black dark:text-white font-medium">
             <p>
-              When I first set up Big Pixel®, it was with the thought that I would create a massive
-              consultancy, get stinking rich, write many books on how great I was.
+              When I first set up Big Pixel<sup>&reg;</sup>, it was with the thought that I would
+              create a massive consultancy, get stinking rich, write many books on how great I was.
             </p>
             <p>The only problem was I wasn&#39;t built that way.</p>
             <p>
@@ -86,9 +133,9 @@ export default function AboutPage() {
               change being priced out of the tools that every commercial company takes for granted.
             </p>
             <p>
-              Making Big Pixel® a CIC felt like the right fit. It means I can support organisations
-              that are helping make the world a better place, without taking half their budget in
-              the process.
+              Making Big Pixel<sup>&reg;</sup> a CIC felt like the right fit. It means I can support
+              organisations that are helping make the world a better place, without taking half
+              their budget in the process.
             </p>
             <p className="text-sm lg:text-base font-extrabold text-purple-950 dark:text-purple-300">
               James Beston, Founder
