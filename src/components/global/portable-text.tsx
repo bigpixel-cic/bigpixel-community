@@ -67,6 +67,21 @@ export default function CustomPortableText({
           />
         );
       },
+      hr: ({ value }) => {
+        return (
+          <hr
+            className={`border-metal-300 dark:border-metal-700 my-6 ${
+              value.style === 'strong'
+                ? 'border-2'
+                : value.style === 'dashed'
+                  ? 'border-dashed'
+                  : value.style === 'light'
+                    ? 'border-dotted'
+                    : 'border'
+            }`}
+          />
+        );
+      },
     },
     block: {
       h1: ({ children, value }) => (
