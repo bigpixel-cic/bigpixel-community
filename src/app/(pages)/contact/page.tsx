@@ -60,8 +60,8 @@ const contactData = [
   },
   {
     type: 'Phone',
-    label: '01692 774 886',
-    value: 'tel:+441692774886',
+    label: '01603 515 224',
+    value: 'tel:+441603515224',
     icon: PhoneIcon,
   },
   {
