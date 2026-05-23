@@ -5,7 +5,7 @@ import Link from 'next/link';
 const socials = [
   {
     name: 'LinkedIn',
-    url: 'https://www.linkedin.com/company/bigpixel-cic',
+    url: 'https://www.linkedin.com/company/bigpixelcic',
     icon: LinkedInIcon,
   },
   {
