@@ -10,13 +10,13 @@ export default function Prices() {
             How pricing works
           </h2>
           <PriceChart />
-          <p className="text-xl md:text-2xl leading-normal">
+          <p className="text-xl md:text-2xl leading-normal font-slab">
             Big Pixel&apos;s pricing is built around what your organisation actually earns. The more
             you turn over annually, the closer to full rate you pay. It means the work stays
             financially viable, and accessible to the organisations that need it most.
           </p>
           <PricingTable />
-          <p className="text-xl md:text-2xl leading-normal">
+          <p className="text-xl md:text-2xl leading-normal font-slab">
             Exact fees depend on the scope of the project. But your organisation&apos;s annual
             income is the starting point, rather than your budget, or what you wish was your budget.
           </p>

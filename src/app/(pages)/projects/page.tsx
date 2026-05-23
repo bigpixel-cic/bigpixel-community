@@ -88,7 +88,11 @@ export default async function Page() {
                 </div>
                 <div className="px-4 py-4 sm:px-6">
                   <h2 className="font-headline font-bold text-xl">{project.title}</h2>
-                  {project.subtitle && <p className="text-sm text-gray-600">{project.subtitle}</p>}
+                  {project.subtitle && (
+                    <p className="mt-1 text-sm text-gray-600 font-slab text-balance">
+                      {project.subtitle}
+                    </p>
+                  )}
                 </div>
               </Link>
             </li>

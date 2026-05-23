@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
+import { Outfit, Aleo } from 'next/font/google';
 import '@/styles/globals.css';
 
 import 'next-cloudinary/dist/cld-video-player.css';
@@ -26,46 +26,16 @@ const keywords = [
   'CIC web design',
 ];
 
-const nexa = localFont({
-  src: [
-    {
-      path: '../fonts/nexa-800.woff2',
-      weight: '800',
-      style: 'normal',
-    },
-    {
-      path: '../fonts/nexa-900.woff2',
-      weight: '900',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-nexa',
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-outfit',
+  display: 'swap',
 });
 
-const nexaText = localFont({
-  src: [
-    {
-      path: '../fonts/nexa-text-400.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../fonts/nexa-text-600.woff2',
-      weight: '600',
-      style: 'normal',
-    },
-    {
-      path: '../fonts/nexa-text-700.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../fonts/nexa-text-900.woff2',
-      weight: '900',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-nexa-text',
+const aleo = Aleo({
+  subsets: ['latin'],
+  variable: '--font-aleo',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -139,7 +109,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${nexa.variable} ${nexaText.variable} h-full antialiased`}>
+    <html lang="en" className={`${outfit.variable} ${aleo.variable} h-full antialiased`}>
       <head>
         <meta name="apple-mobile-web-app-title" content="Big Pixel" />
         <script

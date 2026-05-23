@@ -20,7 +20,7 @@ export default function SectionOne() {
                 className="rounded-lg object-cover w-135 h-135"
               />
             </SlideInLeft>
-            <div className="flex-1 text-xl md:text-2xl leading-normal">
+            <div className="flex-1 text-xl md:text-2xl leading-normal font-slab">
               <p>
                 Before starting Big Pixel<sup>&reg;</sup> Community CIC, I spent twenty years in
                 design and over a decade working for a large UK charity. This means I know how
@@ -40,7 +40,7 @@ export default function SectionOne() {
           <h3 className="font-headline font-black text-4xl sm:text-5xl md:text-6xl">
             A different way of doing things
           </h3>
-          <div className="text-xl md:text-2xl leading-normal">
+          <div className="text-xl md:text-2xl leading-normal font-slab">
             <p>
               ☝️ That isn&apos;t just a nice phrase. I <em>genuinely</em> want to do things
               differently. That is why I set up Big Pixel<sup>&reg;</sup> as a CIC at the start of

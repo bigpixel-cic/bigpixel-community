@@ -50,12 +50,12 @@ export default function Footer() {
           <div className="space-y-6">
             <Image
               className="h-10"
-              src="/brand/big-pixel-text.svg"
+              src="/brand/dark-bp-text-metal.svg"
               alt="Big Pixel"
               width={169}
               height={40}
             />
-            <p className="text-sm/6 text-balance text-metal-200">
+            <p className="text-sm/6 text-balance text-metal-200 font-slab">
               Helping good organisations get the digital tools they deserve.
             </p>
             <div className="flex gap-x-4">
@@ -121,7 +121,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-16 border-t border-metal-600 pt-8 sm:mt-20 lg:mt-24">
+        <div className="mt-16 border-t border-metal-600 pt-8 sm:mt-20 lg:mt-24 font-slab">
           <p className="text-sm/6 text-metal-400">
             Big Pixel&reg; and the device mark are registered trademarks in the United Kingdom.
           </p>
@@ -131,7 +131,7 @@ export default function Footer() {
             2TG.
           </p>
         </div>
-        <div className="mt-8 border-t border-metal-600 pt-8">
+        <div className="mt-8 border-t border-metal-600 pt-8 font-slab">
           <p className="text-sm/6 text-metal-400">
             &copy; {new Date().getFullYear()} Big Pixel Community CIC. All rights reserved.
           </p>

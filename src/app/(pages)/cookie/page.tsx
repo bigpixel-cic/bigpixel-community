@@ -4,7 +4,7 @@ export default async function CookiePage() {
       <h1 className="font-headline font-black text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
         Cookie Policy
       </h1>
-      <article className="prose prose-metal dark:prose-invert max-w-none">
+      <article className="font-slab prose prose-metal dark:prose-invert prose-headings:font-headline max-w-none">
         <p>
           <strong>Big Pixel Community CIC</strong>
           <br />
@@ -17,21 +17,29 @@ export default async function CookiePage() {
 
         <h2>Table of Contents</h2>
 
-        <p>
-          1. <a href="#1-what-are-cookies">What Are Cookies</a>
-          <br />
-          2. <a href="#2-how-we-use-cookies">How We Use Cookies</a>
-          <br />
-          3. <a href="#3-cookie-categories">Cookie Categories</a>
-          <br />
-          4. <a href="#4-how-to-manage-cookies">How to Manage Cookies</a>
-          <br />
-          5. <a href="#5-third-party-cookies">Third-Party Cookies</a>
-          <br />
-          6. <a href="#6-changes-to-this-policy">Changes to This Policy</a>
-          <br />
-          7. <a href="#7-contact-us">Contact Us</a>
-        </p>
+        <ol>
+          <li>
+            <a href="#1-what-are-cookies">What Are Cookies</a>
+          </li>
+          <li>
+            <a href="#2-how-we-use-cookies">How We Use Cookies</a>
+          </li>
+          <li>
+            <a href="#3-cookie-categories">Cookie Categories</a>
+          </li>
+          <li>
+            <a href="#4-how-to-manage-cookies">How to Manage Cookies</a>
+          </li>
+          <li>
+            <a href="#5-third-party-cookies">Third-Party Cookies</a>
+          </li>
+          <li>
+            <a href="#6-changes-to-this-policy">Changes to This Policy</a>
+          </li>
+          <li>
+            <a href="#7-contact-us">Contact Us</a>
+          </li>
+        </ol>
 
         <hr />
 

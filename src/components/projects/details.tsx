@@ -24,7 +24,7 @@ export default function ProjectDetails({
               <dt className="text-sm/6 font-bold text-blue-900 dark:text-blue-50 sm:col-span-2">
                 Client
               </dt>
-              <dd className="mt-1 text-sm text-metal-700 dark:text-metal-200 sm:col-span-2 sm:mt-0">
+              <dd className="mt-1 text-sm text-metal-700 dark:text-metal-200 sm:col-span-2 sm:mt-0 font-slab">
                 {client}
               </dd>
             </div>
@@ -32,7 +32,7 @@ export default function ProjectDetails({
               <dt className="text-sm/6 font-bold text-blue-900 dark:text-blue-50 sm:col-span-2">
                 Completion Date
               </dt>
-              <dd className="mt-1 text-sm text-metal-700 dark:text-metal-200 sm:col-span-2 sm:mt-0">
+              <dd className="mt-1 text-sm text-metal-700 dark:text-metal-200 sm:col-span-2 sm:mt-0 font-slab">
                 {formatDate(date, 'MMMM dd, yyyy')}
               </dd>
             </div>
@@ -40,7 +40,7 @@ export default function ProjectDetails({
               <dt className="text-sm/6 font-bold text-blue-900 dark:text-blue-50 sm:col-span-2">
                 Category
               </dt>
-              <dd className="mt-1 text-sm text-metal-700 dark:text-metal-200 sm:col-span-2 sm:mt-0">
+              <dd className="mt-1 text-sm text-metal-700 dark:text-metal-200 sm:col-span-2 sm:mt-0 font-slab">
                 {category}
               </dd>
             </div>
@@ -48,7 +48,7 @@ export default function ProjectDetails({
               <dt className="text-sm/6 font-bold text-blue-900 dark:text-blue-50 sm:col-span-2">
                 Case Study
               </dt>
-              <dd className="mt-1 text-sm text-metal-700 dark:text-metal-200 sm:col-span-2 sm:mt-0">
+              <dd className="mt-1 text-sm text-metal-700 dark:text-metal-200 sm:col-span-2 sm:mt-0 font-slab">
                 {caseStudy ? (
                   <Link
                     href={caseStudy}

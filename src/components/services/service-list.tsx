@@ -64,7 +64,7 @@ export default function ServiceList() {
               />
               <h3 className="font-headline font-black text-3xl md:text-4xl">{service.name}</h3>
             </div>
-            <p className="font-extrabold text-xl/6 md:text-2xl">{service.title}</p>
+            <p className="font-sans font-bold text-xl/6 md:text-2xl">{service.title}</p>
             <p className="text-sm sm:text-base lg:text-lg">{service.description}</p>
           </div>
         </SlideInRight>

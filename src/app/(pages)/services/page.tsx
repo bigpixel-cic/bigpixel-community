@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <div className="flex flex-col items-start gap-8 lg:gap-12">
-      <article className="mx-auto prose md:prose-lg 2xl:prose-xl prose-headings:font-headline prose-h1:text-metal-950 prose-h1:font-black prose-metal dark:prose-invert dark:prose-h1:text-metal-50">
+      <article className="mx-auto font-slab prose md:prose-lg 2xl:prose-xl prose-headings:font-headline prose-h2:text-balance prose-h1:text-metal-950 prose-h1:font-black prose-metal dark:prose-invert dark:prose-h1:text-metal-50">
         <h1>Our Services</h1>
         <h2>
           We help charities, non-profits, and social enterprises get the digital tools they actually

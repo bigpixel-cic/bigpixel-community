@@ -18,7 +18,7 @@ export default function Testimonial({
   return (
     <SlideComponent>
       <div className="mt-8 bg-blue-700 dark:bg-blue-900 rounded-xl p-6 lg:p-10 shadow-md not-prose">
-        <blockquote className="text-base md:text-lg lg:text-xl text-center text-white text-balance italic">
+        <blockquote className="text-base font-sans md:text-lg lg:text-xl text-center text-white text-balance italic">
           {quote}
         </blockquote>
         <div className="mt-8 flex items-center justify-center gap-x-4">
@@ -30,7 +30,7 @@ export default function Testimonial({
               height={36}
             />
           )}
-          {organisation && <p className="font-bold text-blue-50">{organisation}</p>}
+          {organisation && <p className="font-bold font-sans text-blue-50">{organisation}</p>}
         </div>
       </div>
     </SlideComponent>

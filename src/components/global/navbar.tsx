@@ -64,7 +64,7 @@ export default function Navbar() {
                   href={nav.slug || '#'}
                   scroll={false}
                   onClick={() => setOpen(false)}
-                  className="font-semibold tracking-tight px-6 py-3 rounded-full bg-transparent hover:bg-metal-100 dark:hover:bg-black transition-colors ease-in-out duration-300"
+                  className="font-medium tracking-tight px-6 py-3 rounded-full bg-transparent hover:bg-metal-100 dark:hover:bg-black transition-colors ease-in-out duration-300"
                 >
                   {nav.label}
                 </Link>
@@ -75,7 +75,7 @@ export default function Navbar() {
                 href="/contact"
                 scroll={false}
                 onClick={() => setOpen(false)}
-                className="font-semibold text-white tracking-tight px-6 py-3 rounded-full bg-metal-800 hover:bg-metal-950 dark:hover:bg-black transition-colors ease-in-out duration-300"
+                className="font-medium text-white tracking-tight px-6 py-3 rounded-full bg-metal-800 hover:bg-metal-950 dark:hover:bg-black transition-colors ease-in-out duration-300"
               >
                 Contact us
               </Link>
@@ -111,7 +111,7 @@ export default function Navbar() {
                         key={nav.label}
                         href={nav.slug || '#'}
                         onClick={() => setOpen(false)}
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-medium"
                       >
                         {nav.label}
                       </Link>
@@ -121,7 +121,7 @@ export default function Navbar() {
                     <Link
                       href="/contact"
                       onClick={() => setOpen(false)}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 text-center font-semibold text-white bg-metal-800 hover:bg-metal-950 dark:hover:bg-black transition-colors ease-in-out duration-300"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 text-center font-medium text-white bg-metal-800 hover:bg-metal-950 dark:hover:bg-black transition-colors ease-in-out duration-300"
                     >
                       Contact us
                     </Link>

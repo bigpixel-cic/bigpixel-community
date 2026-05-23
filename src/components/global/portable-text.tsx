@@ -2,6 +2,7 @@ import { PortableText, type PortableTextComponents, type PortableTextBlock } fro
 import ResolvedLink from '@/components/global/resolved-link';
 import Image from '@/components/global/sanity-image';
 import CldVideoPlayer from '@/components/global/video-player';
+import Callout from '@/components/global/callout';
 
 export default function CustomPortableText({
   className,
@@ -82,6 +83,9 @@ export default function CustomPortableText({
           />
         );
       },
+      callout: ({ value }) => {
+        return <Callout text={value.text} bgColour={value.bgColour} icon={value.icon} />;
+      },
     },
     block: {
       h1: ({ children, value }) => (
@@ -156,7 +160,7 @@ export default function CustomPortableText({
   };
 
   return (
-    <div className={`prose-a:underline prose ${className}`}>
+    <div className={className}>
       <PortableText components={components} value={value} />
       {footnotes.length > 0 && (
         <div className="mt-12 border-t border-current/20 pt-4">

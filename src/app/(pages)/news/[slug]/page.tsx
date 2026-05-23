@@ -80,10 +80,10 @@ export default async function Page(props: Props) {
           </SlideInTop>
         </div>
       )}
-      <div className="w-full px-6 py-12 lg:py-24 bg-metal-50 rounded-lg lg:rounded-xl shadow-lg lg:shadow-xl border border-metal-200 dark:bg-metal-950 dark:border-metal-800">
+      <div className="w-full px-12 py-12 lg:py-24 bg-metal-50 rounded-lg lg:rounded-xl shadow-lg lg:shadow-xl border border-metal-200 dark:bg-metal-950 dark:border-metal-800">
         <PortableText
           value={post.content as PortableTextBlock[]}
-          className="mx-auto prose-metal dark:prose-invert prose-sm md:prose-base lg:prose-lg xl:prose-xl prose-headings:font-headline"
+          className="mx-auto max-w-4xl font-slab prose prose-metal dark:prose-invert prose-sm md:prose-base lg:prose-lg prose-headings:font-headline"
         />
       </div>
     </div>

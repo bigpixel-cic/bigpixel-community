@@ -4,7 +4,7 @@ export default async function PrivacyPage() {
       <h1 className="font-headline font-black text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
         Privacy Policy
       </h1>
-      <article className="prose prose-metal dark:prose-invert max-w-none">
+      <article className="font-slab prose prose-metal dark:prose-invert prose-headings:font-headline max-w-none">
         <p>
           <strong>Big Pixel Community CIC</strong>
           <br />
@@ -18,31 +18,44 @@ export default async function PrivacyPage() {
 
         <h2>Table of Contents</h2>
 
-        <p>
-          1. <a href="#1-introduction">Introduction</a>
-          <br />
-          2. <a href="#2-what-personal-data-we-collect">What Personal Data We Collect</a>
-          <br />
-          3. <a href="#3-how-we-collect-your-data">How We Collect Your Data</a>
-          <br />
-          4. <a href="#4-why-we-collect-your-data">Why We Collect Your Data — Legal Basis</a>
-          <br />
-          5. <a href="#5-third-party-services">Third-Party Services</a>
-          <br />
-          6. <a href="#6-cookies">Cookies</a>
-          <br />
-          7. <a href="#7-data-retention">Data Retention</a>
-          <br />
-          8. <a href="#8-your-data-protection-rights">Your Data Protection Rights</a>
-          <br />
-          9. <a href="#9-international-data-transfers">International Data Transfers</a>
-          <br />
-          10. <a href="#10-how-to-contact-us">How to Contact Us</a>
-          <br />
-          11. <a href="#11-how-to-complain">How to Complain</a>
-          <br />
-          12. <a href="#12-changes-to-this-policy">Changes to This Policy</a>
-        </p>
+        <ol>
+          <li>
+            <a href="#1-introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#2-what-personal-data-we-collect">What Personal Data We Collect</a>
+          </li>
+          <li>
+            <a href="#3-how-we-collect-your-data">How We Collect Your Data</a>
+          </li>
+          <li>
+            <a href="#4-why-we-collect-your-data">Why We Collect Your Data — Legal Basis</a>
+          </li>
+          <li>
+            <a href="#5-third-party-services">Third-Party Services</a>
+          </li>
+          <li>
+            <a href="#6-cookies">Cookies</a>
+          </li>
+          <li>
+            <a href="#7-data-retention">Data Retention</a>
+          </li>
+          <li>
+            <a href="#8-your-data-protection-rights">Your Data Protection Rights</a>
+          </li>
+          <li>
+            <a href="#9-international-data-transfers">International Data Transfers</a>
+          </li>
+          <li>
+            <a href="#10-how-to-contact-us">How to Contact Us</a>
+          </li>
+          <li>
+            <a href="#11-how-to-complain">How to Complain</a>
+          </li>
+          <li>
+            <a href="#12-changes-to-this-policy">Changes to This Policy</a>
+          </li>
+        </ol>
 
         <hr />
 

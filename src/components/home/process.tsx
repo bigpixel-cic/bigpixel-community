@@ -45,7 +45,7 @@ export default function Process() {
                       className={`size-24 md:size-32 lg:size-40 mb-4 ${process.colour}`}
                     />
                     <h3 className="font-headline font-bold text-3xl">{process.name}</h3>
-                    <p className="mt-2">{process.description}</p>
+                    <p className="mt-2 font-slab text-balance">{process.description}</p>
                   </div>
                 </BounceInFromTop>
               </div>

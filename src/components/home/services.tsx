@@ -45,7 +45,7 @@ export default function Services() {
                       className={`size-24 md:size-32 lg:size-40 mb-4 ${service.colour}`}
                     />
                     <h3 className="font-headline font-bold text-3xl">{service.name}</h3>
-                    <p className="mt-2">{service.description}</p>
+                    <p className="mt-2 font-slab text-balance">{service.description}</p>
                   </div>
                 </BounceInFromTop>
               </div>

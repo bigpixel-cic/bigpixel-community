@@ -13,7 +13,7 @@ export function TextInput({
 }) {
   return (
     <Field.Root name={name}>
-      <Field.Label className="block text-sm/6 font-semibold text-metal-900 dark:text-metal-50">
+      <Field.Label className="block text-sm/6 font-medium text-metal-900 dark:text-metal-50">
         {label}
       </Field.Label>
       <div className="mt-2">
@@ -41,7 +41,7 @@ export function EmailInput({
 }) {
   return (
     <Field.Root name={name}>
-      <Field.Label className="block text-sm/6 font-semibold text-metal-900 dark:text-metal-50">
+      <Field.Label className="block text-sm/6 font-medium text-metal-900 dark:text-metal-50">
         {label}
       </Field.Label>
       <div className="mt-2">
@@ -70,7 +70,7 @@ export function TextArea({
 }) {
   return (
     <Field.Root name={name}>
-      <Field.Label className="block text-sm/6 font-semibold text-metal-900 dark:text-metal-50">
+      <Field.Label className="block text-sm/6 font-medium text-metal-900 dark:text-metal-50">
         {label}
       </Field.Label>
       <div className="mt-2">

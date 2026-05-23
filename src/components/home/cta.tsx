@@ -9,7 +9,7 @@ export default function CTA() {
             <h2 className="font-headline font-black text-4xl sm:text-5xl md:text-6xl">
               Sounds good?
             </h2>
-            <p className="text-xl md:text-2xl leading-normal">
+            <p className="text-xl md:text-2xl leading-normal font-slab">
               If any of this sounds like what your organisation needs, the best thing to do is drop
               us a line.{' '}
               <strong className="font-extrabold">There&apos;s no obligation on your side.</strong>{' '}

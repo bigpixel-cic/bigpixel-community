@@ -83,7 +83,7 @@ export default async function Page(props: Props) {
       </SlideInTop>
       <PortableText
         value={project.content as PortableTextBlock[]}
-        className="prose-metal dark:prose-invert max-w-none prose-sm md:prose-base lg:prose-lg xl:prose-xl"
+        className="font-slab prose-metal dark:prose-invert max-w-none prose-sm md:prose-base lg:prose-lg xl:prose-xl prose-figcaption:font-sans prose-figcaption:not-italic"
       />
     </div>
   );

@@ -4,7 +4,7 @@ export default async function TermsPage() {
       <h1 className="font-headline font-black text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
         Terms of Use
       </h1>
-      <article className="prose prose-metal dark:prose-invert max-w-none">
+      <article className="font-slab prose prose-metal dark:prose-invert prose-headings:font-headline max-w-none">
         <p>
           <strong>Big Pixel Community CIC</strong>
           <br />
@@ -15,25 +15,35 @@ export default async function TermsPage() {
         </p>
         <hr />
         <h2>Table of Contents</h2>
-        <p>
-          1. <a href="#1-introduction">Introduction</a>
-          <br />
-          2. <a href="#2-intellectual-property-rights">Intellectual Property Rights</a>
-          <br />
-          3. <a href="#3-acceptable-use">Acceptable Use</a>
-          <br />
-          4. <a href="#4-user-accounts">User Accounts</a>
-          <br />
-          5. <a href="#5-limitation-of-liability">Limitation of Liability</a>
-          <br />
-          6. <a href="#6-indemnification">Indemnification</a>
-          <br />
-          7. <a href="#7-governing-law">Governing Law</a>
-          <br />
-          8. <a href="#8-changes-to-these-terms">Changes to These Terms</a>
-          <br />
-          9. <a href="#9-contact-us">Contact Us</a>
-        </p>
+        <ol>
+          <li>
+            <a href="#1-introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#2-intellectual-property-rights">Intellectual Property Rights</a>
+          </li>
+          <li>
+            <a href="#3-acceptable-use">Acceptable Use</a>
+          </li>
+          <li>
+            <a href="#4-user-accounts">User Accounts</a>
+          </li>
+          <li>
+            <a href="#5-limitation-of-liability">Limitation of Liability</a>
+          </li>
+          <li>
+            <a href="#6-indemnification">Indemnification</a>
+          </li>
+          <li>
+            <a href="#7-governing-law">Governing Law</a>
+          </li>
+          <li>
+            <a href="#8-changes-to-these-terms">Changes to These Terms</a>
+          </li>
+          <li>
+            <a href="#9-contact-us">Contact Us</a>
+          </li>
+        </ol>
         <hr />
         <h2 id="1-introduction">1. Introduction</h2>
         <p>

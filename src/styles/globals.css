@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import "@c15t/nextjs/styles.css";
+@import '@c15t/nextjs/styles.css';
 @plugin '@tailwindcss/typography';
 @source "../src";
 
@@ -145,8 +145,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-nexa-text);
-  --font-headline: var(--font-nexa);
+  --font-sans: var(--font-outfit);
+  --font-slab: var(--font-aleo);
+  --font-headline: var(--font-outfit);
 }
 
 :root {
@@ -165,7 +166,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Nexa Text', Arial, Helvetica, sans-serif;
+  font-family: 'Outfit', Arial, Helvetica, sans-serif;
 }
 
 @utility prose-metal {
