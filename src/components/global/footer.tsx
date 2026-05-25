@@ -70,8 +70,15 @@ export default function Footer() {
                 </Link>
               ))}
             </div>
+            <Image
+              className="h-16 self-start"
+              src="/assets/climatehub.svg"
+              alt="Climate Hub"
+              width={155}
+              height={64}
+            />
           </div>
-          <div className="mt-16 grid grid-cols-1 gap-8 xl:mt-0">
+          <div className="mt-12 grid grid-cols-1 gap-8 xl:mt-0">
             <div className="md:grid md:grid-cols-3 md:gap-8">
               <div>
                 <h3 className="text-base/6 font-headline font-bold text-metal-50">Solutions</h3>
@@ -121,7 +128,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-16 border-t border-metal-600 pt-8 sm:mt-20 lg:mt-24 font-slab">
+        <div className="mt-12 border-t border-metal-600 pt-8 sm:mt-16 lg:mt-20 font-slab">
           <p className="text-sm/6 text-metal-400">
             Big Pixel&reg; and the device mark are registered trademarks in the United Kingdom.
           </p>

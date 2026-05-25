@@ -142,6 +142,16 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
+
+        <h2>SME Climate Hub</h2>
+        <p>
+          Big Pixel<sup>&reg;</sup> Community CIC is a proud member of the SME Climate Hub, a global
+          initiative that empowers small and medium sized companies to take climate action and build
+          more resilient businesses. By joining the SME Climate Hub, we commit to lowering our
+          impact on the environment through authentic action, halving our emissions by 2030. In
+          making the SME Climate Commitment, we have joined the UN Climate Change High Level
+          Champion&apos;s Race to Zero campaign.
+        </p>
       </article>
     </div>
   );
