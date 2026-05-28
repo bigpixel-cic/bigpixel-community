@@ -17,12 +17,18 @@ export default function HeroVideo() {
         </div>
       </div>
       <video
-        className="absolute top-0 w-full h-full object-[75%_50%] lg:object-center object-cover z-0"
-        src="/assets/hero-video.mp4"
+        className="absolute inset-0 w-full h-full object-cover object-[75%_50%] lg:object-center z-0"
         autoPlay
         loop
         muted
-      />
+        playsInline
+        poster="https://res.cloudinary.com/dzm5kamkv/video/upload/f_jpg,so_50p/hero-video_s6rawa"
+      >
+        <source
+          src="https://res.cloudinary.com/dzm5kamkv/video/upload/f_auto,q_auto/hero-video_s6rawa"
+          type="video/mp4"
+        />
+      </video>
     </div>
   );
 }
