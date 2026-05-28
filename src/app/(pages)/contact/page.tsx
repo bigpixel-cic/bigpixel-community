@@ -8,6 +8,7 @@ import {
   LinkedInIcon,
   FacebookIcon,
 } from '@/components/icons';
+import { Suspense } from 'react';
 
 const bigPixel = {
   url: process.env.NODE_ENV === 'production' ? 'https://bigpixel.org.uk' : 'http://localhost:3000',
@@ -98,7 +99,9 @@ export default async function ContactPage() {
       </h1>
       <div className="mt-4 w-full flex flex-col md:flex-row gap-8">
         <div className="flex-1 space-y-8">
-          <ContactForm />
+          <Suspense fallback="Loading contact form...">
+            <ContactForm />
+          </Suspense>
         </div>
         <div className="flex-1 space-y-8">
           <h2 className="font-headline font-bold text-purple-900 dark:text-purple-300 text-2xl">
