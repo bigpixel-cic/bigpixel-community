@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
-import { client } from '@/sanity/client';
 import { PROJECTS_QUERY } from '@/sanity/queries';
 import Image from 'next/image';
 import Link from 'next/link';
 import { urlFor } from '@/sanity/images';
 import { BoxGesture } from '@/components/motion';
+import { sanityFetch, getDynamicFetchOptions, type DynamicFetchOptions } from '@/sanity/live';
+import { draftMode } from 'next/headers';
+import { Suspense } from 'react';
 
 type Project = {
   _id: string;
@@ -58,15 +60,33 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const projects = await client.fetch(PROJECTS_QUERY);
+  const { isEnabled: isDraftMode } = await draftMode();
+  if (isDraftMode) {
+    return (
+      <Suspense fallback={<ProjectsPageFallback />}>
+        <DynamicProjectsPage />
+      </Suspense>
+    );
+  }
+  return <CachedProjectsPage perspective="published" stega={false} />;
+}
 
+async function DynamicProjectsPage() {
+  const { perspective, stega } = await getDynamicFetchOptions();
+  return <CachedProjectsPage perspective={perspective} stega={stega} />;
+}
+
+async function CachedProjectsPage({ perspective, stega }: DynamicFetchOptions) {
+  'use cache';
+  const { data } = await sanityFetch({ query: PROJECTS_QUERY, perspective, stega });
+  const projects = data as Project[];
   return (
     <div className="flex flex-col items-start gap-8 lg:gap-12">
       <h1 className="font-headline font-black text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
         Projects Portfolio
       </h1>
       <ul className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
-        {projects.map((project: Project) => (
+        {projects.map((project) => (
           <BoxGesture key={project._id}>
             <li className="h-full rounded-lg bg-white shadow-md dark:divide-white/10 dark:bg-metal-800/50 dark:shadow-none dark:outline dark:-outline-offset-1 dark:outline-white/10">
               <Link
@@ -102,6 +122,19 @@ export default async function Page() {
       <h2 className="font-headline font-bold text-metal-500 text-2xl mt-8">
         More projects coming soon&hellip;
       </h2>
+    </div>
+  );
+}
+
+function ProjectsPageFallback() {
+  return (
+    <div className="flex flex-col items-start gap-8 lg:gap-12 animate-pulse">
+      <div className="h-12 w-72 bg-metal-200 dark:bg-metal-800 rounded" />
+      <ul className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
+        {[0, 1, 2].map((i) => (
+          <li key={i} className="h-64 bg-metal-100 dark:bg-metal-800 rounded-lg" />
+        ))}
+      </ul>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { BlueSkyIcon, FacebookIcon, GitHubIcon, LinkedInIcon } from '../icons';
 import Link from 'next/link';
+import { Suspense } from 'react';
+import { CopyrightYear } from './copyright-year';
 
 const socials = [
   {
@@ -140,7 +142,7 @@ export default function Footer() {
         </div>
         <div className="mt-8 border-t border-metal-600 pt-8 font-slab">
           <p className="text-sm/6 text-metal-400">
-            &copy; {new Date().getFullYear()} Big Pixel Community CIC. All rights reserved.
+            &copy; <Suspense fallback="2026"><CopyrightYear /></Suspense> Big Pixel Community CIC. All rights reserved.
           </p>
         </div>
       </div>

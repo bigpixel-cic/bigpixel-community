@@ -4,6 +4,9 @@ import '@/styles/globals.css';
 
 import 'next-cloudinary/dist/cld-video-player.css';
 import { ConsentManager } from '../components/consent-manager';
+import { SanityLive } from '@/sanity/live';
+import { VisualEditing } from 'next-sanity/visual-editing';
+import { draftMode } from 'next/headers';
 
 const bigPixel = {
   name: 'Big Pixel Community CIC',
@@ -103,11 +106,12 @@ const websiteSchema = {
   publisher: { '@type': 'Organization', name: bigPixel.name },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { isEnabled: isDraftMode } = await draftMode();
   return (
     <html lang="en" className={`${outfit.variable} ${aleo.variable} h-full antialiased`}>
       <head>
@@ -123,6 +127,8 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col">
         <ConsentManager>{children}</ConsentManager>
+        <SanityLive includeDrafts={isDraftMode} />
+        {isDraftMode && <VisualEditing />}
       </body>
     </html>
   );

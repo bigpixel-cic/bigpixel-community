@@ -1,27 +1,64 @@
 import type { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { client } from '@/sanity/client';
 import { POSTS_SLUGS_QUERY, POST_QUERY, POST_METADATA_QUERY } from '@/sanity/queries';
 import { urlFor } from '@/sanity/images';
 import PortableText from '@/components/global/portable-text';
 import { SlideInTop } from '@/components/motion';
-
 import { type PortableTextBlock } from 'next-sanity';
 import { formatDate } from 'date-fns';
+import {
+  sanityFetch,
+  sanityFetchStaticParams,
+  sanityFetchMetadata,
+  getDynamicFetchOptions,
+  type DynamicFetchOptions,
+} from '@/sanity/live';
+import { draftMode } from 'next/headers';
+import { Suspense } from 'react';
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
+type PostMetadata = {
+  title: string | null;
+  description: string | null;
+  primaryKeyword: string | null;
+  keywords: string[] | null;
+  generateOgImage: boolean | null;
+  ogImage: string | null;
+};
+
+type Post = {
+  _id: string;
+  title: string;
+  slug: string;
+  date: string;
+  tags: string[] | null;
+  category: string | null;
+  author: string | null;
+  coverImage: string | null;
+  altText: string | null;
+  content: unknown;
+};
+
 export async function generateStaticParams() {
-  const slugs = await client.fetch(POSTS_SLUGS_QUERY);
-  return slugs.map((slug: string) => ({ slug }));
+  const { data: slugs } = await sanityFetchStaticParams({ query: POSTS_SLUGS_QUERY });
+  return (slugs as string[]).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
-  const params = await props.params;
-  const metadata = await client.fetch(POST_METADATA_QUERY, { slug: params.slug });
+  const [{ slug }, { perspective }] = await Promise.all([
+    props.params,
+    getDynamicFetchOptions(),
+  ]);
+  const { data } = await sanityFetchMetadata({
+    query: POST_METADATA_QUERY,
+    params: { slug },
+    perspective,
+  });
+  const metadata = data as PostMetadata | null;
 
   if (!metadata) {
     return {};
@@ -51,8 +88,36 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
 }
 
 export default async function Page(props: Props) {
-  const params = await props.params;
-  const post = await client.fetch(POST_QUERY, { slug: params.slug });
+  const { isEnabled: isDraftMode } = await draftMode();
+  if (isDraftMode) {
+    return (
+      <Suspense fallback={<PostPageFallback />}>
+        <DynamicPostPage params={props.params} />
+      </Suspense>
+    );
+  }
+  const { slug } = await props.params;
+  return <CachedPostPage slug={slug} perspective="published" stega={false} />;
+}
+
+async function DynamicPostPage({ params }: Pick<Props, 'params'>) {
+  const [{ slug }, { perspective, stega }] = await Promise.all([params, getDynamicFetchOptions()]);
+  return <CachedPostPage slug={slug} perspective={perspective} stega={stega} />;
+}
+
+async function CachedPostPage({
+  slug,
+  perspective,
+  stega,
+}: { slug: string } & DynamicFetchOptions) {
+  'use cache';
+  const { data } = await sanityFetch({
+    query: POST_QUERY,
+    params: { slug },
+    perspective,
+    stega,
+  });
+  const post = data as Post | null;
 
   if (!post) {
     return notFound();
@@ -86,6 +151,17 @@ export default async function Page(props: Props) {
           className="mx-auto max-w-4xl font-slab prose prose-metal dark:prose-invert prose-sm md:prose-base lg:prose-lg prose-headings:font-headline"
         />
       </div>
+    </div>
+  );
+}
+
+function PostPageFallback() {
+  return (
+    <div className="flex flex-col items-start gap-8 lg:gap-12 w-full animate-pulse">
+      <div className="h-12 w-96 bg-metal-200 dark:bg-metal-800 rounded" />
+      <div className="h-6 w-32 bg-metal-200 dark:bg-metal-800 rounded" />
+      <div className="w-full aspect-video bg-metal-100 dark:bg-metal-800 rounded-lg" />
+      <div className="w-full h-96 bg-metal-100 dark:bg-metal-800 rounded-lg" />
     </div>
   );
 }

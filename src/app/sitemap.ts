@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
-import { client } from '@/sanity/client';
 import { PROJECTS_QUERY, POSTS_QUERY } from '@/sanity/queries';
+import { sanityFetchMetadata, getDynamicFetchOptions } from '@/sanity/live';
 
 type project = {
   _id: string;
@@ -26,15 +26,19 @@ export const baseUrl =
   process.env.NODE_ENV === 'production' ? 'https://bigpixel.org.uk' : 'http://localhost:3000';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const projects = await client.fetch(PROJECTS_QUERY);
-  const posts = await client.fetch(POSTS_QUERY);
-  const projectEntries = projects.map((p: project) => ({
+  const { perspective } = await getDynamicFetchOptions();
+  const [{ data: projects }, { data: posts }] = await Promise.all([
+    sanityFetchMetadata({ query: PROJECTS_QUERY, perspective }),
+    sanityFetchMetadata({ query: POSTS_QUERY, perspective }),
+  ]);
+
+  const projectEntries = (projects as project[]).map((p) => ({
     url: `${baseUrl}/projects/${p.slug}`,
     lastModified: new Date(p.dateModified),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
-  const postEntries = posts.map((p: post) => ({
+  const postEntries = (posts as post[]).map((p) => ({
     url: `${baseUrl}/news/${p.slug}`,
     lastModified: new Date(p.date),
     changeFrequency: 'monthly' as const,

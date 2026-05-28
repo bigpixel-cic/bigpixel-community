@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
-import { client } from '@/sanity/client';
 import { POSTS_QUERY } from '@/sanity/queries';
 import Image from 'next/image';
 import Link from 'next/link';
 import { urlFor } from '@/sanity/images';
 import { BoxGesture } from '@/components/motion';
 import { formatDate } from 'date-fns';
+import { sanityFetch, getDynamicFetchOptions, type DynamicFetchOptions } from '@/sanity/live';
+import { draftMode } from 'next/headers';
+import { Suspense } from 'react';
 
 type Post = {
   _id: string;
@@ -64,14 +66,33 @@ export const metadata: Metadata = {
 };
 
 export default async function NewsPage() {
-  const posts = await client.fetch<Post[]>(POSTS_QUERY);
+  const { isEnabled: isDraftMode } = await draftMode();
+  if (isDraftMode) {
+    return (
+      <Suspense fallback={<NewsPageFallback />}>
+        <DynamicNewsPage />
+      </Suspense>
+    );
+  }
+  return <CachedNewsPage perspective="published" stega={false} />;
+}
+
+async function DynamicNewsPage() {
+  const { perspective, stega } = await getDynamicFetchOptions();
+  return <CachedNewsPage perspective={perspective} stega={stega} />;
+}
+
+async function CachedNewsPage({ perspective, stega }: DynamicFetchOptions) {
+  'use cache';
+  const { data } = await sanityFetch({ query: POSTS_QUERY, perspective, stega });
+  const posts = data as Post[];
   return (
     <div className="flex flex-col items-start gap-8 lg:gap-12">
       <h1 className="font-headline font-black text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
         News and Updates
       </h1>
       <div className="mx-auto grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-        {posts.map((post: Post) => (
+        {posts.map((post) => (
           <BoxGesture key={post._id}>
             <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-metal-900 px-8 pt-80 pb-8 sm:pt-48 lg:pt-80 dark:bg-metal-800">
               {post.coverImage && (
@@ -116,6 +137,19 @@ export default async function NewsPage() {
               </h3>
             </article>
           </BoxGesture>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function NewsPageFallback() {
+  return (
+    <div className="flex flex-col items-start gap-8 lg:gap-12 animate-pulse">
+      <div className="h-12 w-72 bg-metal-200 dark:bg-metal-800 rounded" />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
+        {[0, 1, 2].map((i) => (
+          <div key={i} className="h-80 bg-metal-100 dark:bg-metal-800 rounded-2xl" />
         ))}
       </div>
     </div>
