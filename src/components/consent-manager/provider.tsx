@@ -27,7 +27,7 @@ export default function ConsentManagerClient({ children, ssrData }: ConsentManag
     >
       <ConsentBanner />
       <ConsentDialog />
-      <DevTools disabled={process.env.NODE_ENV === 'production'} />
+      {process.env.NODE_ENV === 'development' && <DevTools />}
       {children}
     </ConsentManagerProvider>
   );
