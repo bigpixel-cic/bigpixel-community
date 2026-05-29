@@ -49,10 +49,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
-  const [{ slug }, { perspective }] = await Promise.all([
-    props.params,
-    getDynamicFetchOptions(),
-  ]);
+  const [{ slug }, { perspective }] = await Promise.all([props.params, getDynamicFetchOptions()]);
   const { data } = await sanityFetchMetadata({
     query: POST_METADATA_QUERY,
     params: { slug },
@@ -110,7 +107,6 @@ async function CachedPostPage({
   perspective,
   stega,
 }: { slug: string } & DynamicFetchOptions) {
-  'use cache';
   const { data } = await sanityFetch({
     query: POST_QUERY,
     params: { slug },

@@ -83,7 +83,6 @@ async function DynamicNewsPage() {
 }
 
 async function CachedNewsPage({ perspective, stega }: DynamicFetchOptions) {
-  'use cache';
   const { data } = await sanityFetch({ query: POSTS_QUERY, perspective, stega });
   const posts = data as Post[];
   return (

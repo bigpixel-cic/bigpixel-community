@@ -77,7 +77,6 @@ async function DynamicProjectsPage() {
 }
 
 async function CachedProjectsPage({ perspective, stega }: DynamicFetchOptions) {
-  'use cache';
   const { data } = await sanityFetch({ query: PROJECTS_QUERY, perspective, stega });
   const projects = data as Project[];
   return (
