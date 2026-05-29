@@ -1,3 +1,4 @@
+import { fetchInitialData } from '@c15t/nextjs';
 import type { ReactNode } from 'react';
 import ConsentManagerProvider from './provider';
 
@@ -6,5 +7,8 @@ import ConsentManagerProvider from './provider';
  * @see https://c15t.com/docs/frameworks/nextjs/quickstart
  */
 export function ConsentManager({ children }: { children: ReactNode }) {
-  return <ConsentManagerProvider>{children}</ConsentManagerProvider>;
+  const ssrData = fetchInitialData({
+    backendURL: '/api/c15t',
+  });
+  return <ConsentManagerProvider ssrData={ssrData}>{children}</ConsentManagerProvider>;
 }
