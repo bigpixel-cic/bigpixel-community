@@ -14,7 +14,7 @@ export default function ConsentManagerClient({ children, ssrData }: ConsentManag
     <ConsentManagerProvider
       options={{
         mode: 'hosted',
-        backendURL: '/api/c15t',
+        backendURL: process.env.NEXT_PUBLIC_C15T_URL!,
         ssrData,
         theme,
         scripts: [
