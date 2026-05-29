@@ -9,13 +9,12 @@ import { gtag } from '@c15t/scripts/google-tag';
  * Client-side consent manager provider.
  * @see https://c15t.com/docs/frameworks/nextjs/quickstart
  */
-export default function ConsentManagerClient({ children, ssrData }: ConsentManagerProps) {
+export default function ConsentManagerClient({ children }: ConsentManagerProps) {
   return (
     <ConsentManagerProvider
       options={{
         mode: 'hosted',
-        backendURL: process.env.NEXT_PUBLIC_C15T_URL!,
-        ssrData,
+        backendURL: '/api/c15t',
         theme,
         scripts: [
           gtag({
