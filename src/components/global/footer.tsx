@@ -3,6 +3,15 @@ import { BlueSkyIcon, FacebookIcon, GitHubIcon, LinkedInIcon } from '../icons';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { CopyrightYear } from './copyright-year';
+import { ConsentDialogLink } from '@c15t/nextjs/components/consent-dialog-link';
+
+export function SiteFooter() {
+  return (
+    <footer>
+      <ConsentDialogLink>Your privacy settings</ConsentDialogLink>
+    </footer>
+  );
+}
 
 const socials = [
   {
@@ -140,10 +149,20 @@ export default function Footer() {
             2TG.
           </p>
         </div>
-        <div className="mt-8 border-t border-metal-600 pt-8 font-slab">
+        <div className="mt-8 border-t border-metal-600 pt-8 font-slab flex flex-col items-center gap-y-4 sm:flex-row sm:justify-between">
           <p className="text-sm/6 text-metal-400">
-            &copy; <Suspense fallback="2026"><CopyrightYear /></Suspense> Big Pixel Community CIC. All rights reserved.
+            &copy;{' '}
+            <Suspense fallback="2026">
+              <CopyrightYear />
+            </Suspense>{' '}
+            Big Pixel Community CIC. All rights reserved.
           </p>
+          <ConsentDialogLink
+            asChild
+            className="text-sm text-metal-400 font-sans hover:text-metal-200 transition-colors duration-200 ease-out"
+          >
+            <a href="#privacy-settings">Manage Preferences</a>
+          </ConsentDialogLink>
         </div>
       </div>
     </footer>
