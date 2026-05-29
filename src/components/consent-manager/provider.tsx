@@ -2,7 +2,6 @@
 
 import { ConsentDialog, ConsentManagerProvider, ConsentBanner } from '@c15t/nextjs';
 import type { ConsentManagerProps } from '@c15t/nextjs';
-import { DevTools } from '@c15t/dev-tools/react';
 import { theme } from './theme';
 import { gtag } from '@c15t/scripts/google-tag';
 /**
@@ -26,7 +25,6 @@ export default function ConsentManagerClient({ children }: ConsentManagerProps) 
     >
       <ConsentBanner />
       <ConsentDialog />
-      {process.env.NODE_ENV === 'development' && <DevTools />}
       {children}
     </ConsentManagerProvider>
   );
