@@ -3,7 +3,6 @@ import { Outfit, Aleo } from 'next/font/google';
 import '@/styles/globals.css';
 
 import 'next-cloudinary/dist/cld-video-player.css';
-import { GoogleTagManager } from '@next/third-parties/google';
 import { ConsentManager } from '../components/consent-manager';
 import { SanityLive } from '@/sanity/live';
 import { VisualEditing } from 'next-sanity/visual-editing';
@@ -125,7 +124,6 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
-        <GoogleTagManager gtmId="G-P498WYCBW4" />
       </head>
 
       <body className="min-h-full flex flex-col">
