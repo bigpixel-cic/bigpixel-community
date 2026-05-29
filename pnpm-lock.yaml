@@ -17,6 +17,9 @@ importers:
       '@c15t/nextjs':
         specifier: ^2.1.0
         version: 2.1.0(@types/react@19.2.15)(next@16.2.6(@babel/core@7.29.7)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.9.3)(use-sync-external-store@1.6.0(react@19.2.6))
+      '@c15t/scripts':
+        specifier: ^2.1.0
+        version: 2.1.0
       '@next/third-parties':
         specifier: ^16.2.6
         version: 16.2.6(next@16.2.6(@babel/core@7.29.7)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)
@@ -813,6 +816,9 @@ packages:
 
   '@c15t/schema@2.1.0':
     resolution: {integrity: sha512-/Kxe4qv6E5cR6wgzxx1CTZuhMFfJQHi3GGFzcRCx4smqN8IrgsVtXv800O7Nz9RqoDu/8DFiHGpJ25aupwMsRQ==}
+
+  '@c15t/scripts@2.1.0':
+    resolution: {integrity: sha512-+4yU0LSeazBaEGGpx9uwVkfoQmFscnjRpx+5Y1E9b34TmoodIGrxX6klmroy71PHt+V+CnuLPU8oCD42m45jPQ==}
 
   '@c15t/translations@2.1.0':
     resolution: {integrity: sha512-pB6A5nMKHaAwFOUetcIkyIscMBr5iVm/lxBqzoSk3MU0KMGn4F/OTpcLZOT7k5P87RMkuuKkXN+gyf6jCuvBAw==}
@@ -7758,6 +7764,8 @@ snapshots:
       valibot: 1.3.1(typescript@5.9.3)
     transitivePeerDependencies:
       - typescript
+
+  '@c15t/scripts@2.1.0': {}
 
   '@c15t/translations@2.1.0': {}
 
