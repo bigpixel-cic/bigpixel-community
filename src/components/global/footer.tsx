@@ -157,11 +157,8 @@ export default function Footer() {
             </Suspense>{' '}
             Big Pixel Community CIC. All rights reserved.
           </p>
-          <ConsentDialogLink
-            asChild
-            className="text-sm text-metal-400 font-sans hover:text-metal-200 transition-colors duration-200 ease-out"
-          >
-            <a href="#privacy-settings">Manage Preferences</a>
+          <ConsentDialogLink className="text-sm text-metal-400 font-sans hover:text-metal-200 transition-colors duration-200 ease-out">
+            <span>Manage Preferences</span>
           </ConsentDialogLink>
         </div>
       </div>

@@ -1,0 +1,1467 @@
+{
+  "machineId": "generate",
+  "version": 1,
+  "savedAt": 1780077705204,
+  "snapshot": {
+    "status": "active",
+    "machine": {
+      "config": {
+        "id": "generate",
+        "initial": "idle",
+        "on": {
+          "CANCEL": {
+            "target": ".cancelling"
+          }
+        },
+        "states": {
+          "idle": {
+            "on": {
+              "START": "preflight"
+            }
+          },
+          "preflight": {
+            "invoke": {
+              "onDone": [
+                {
+                  "target": "modeSelection",
+                  "actions": [
+                    null,
+                    null
+                  ]
+                },
+                {
+                  "target": "preflightError"
+                }
+              ],
+              "onError": {
+                "target": "error"
+              }
+            }
+          },
+          "preflightError": {
+            "on": {
+              "RETRY": {
+                "target": "preflight"
+              }
+            },
+            "after": {
+              "100": "exited"
+            }
+          },
+          "modeSelection": {
+            "always": [
+              {
+                "guard": "hasModeArg",
+                "target": "routeToMode"
+              }
+            ],
+            "invoke": {
+              "onDone": {
+                "target": "routeToMode"
+              },
+              "onError": {
+                "target": "cancelling"
+              }
+            }
+          },
+          "routeToMode": {
+            "always": [
+              {
+                "guard": "isHostedMode",
+                "target": "hostedMode"
+              },
+              {
+                "guard": "isOfflineMode",
+                "target": "offlineMode"
+              },
+              {
+                "guard": "isCustomMode",
+                "target": "customMode"
+              },
+              {
+                "target": "customMode"
+              }
+            ]
+          },
+          "hostedMode": {
+            "invoke": {
+              "onDone": {
+                "target": "backendOptions"
+              },
+              "onError": [
+                {
+                  "target": "cancelling"
+                },
+                {
+                  "target": "error"
+                }
+              ]
+            }
+          },
+          "offlineMode": {
+            "always": "frontendOptions"
+          },
+          "customMode": {
+            "always": "frontendOptions"
+          },
+          "backendOptions": {
+            "invoke": {
+              "onDone": {
+                "target": "frontendOptions"
+              },
+              "onError": {
+                "target": "cancelling"
+              }
+            }
+          },
+          "frontendOptions": {
+            "invoke": {
+              "onDone": {
+                "target": "scriptsOptions"
+              },
+              "onError": {
+                "target": "cancelling"
+              }
+            }
+          },
+          "scriptsOptions": {
+            "invoke": {
+              "onDone": {
+                "target": "fileGeneration"
+              },
+              "onError": {
+                "target": "cancelling"
+              }
+            }
+          },
+          "fileGeneration": {
+            "invoke": {
+              "onDone": {
+                "target": "dependencyCheck"
+              },
+              "onError": {
+                "target": "error"
+              }
+            }
+          },
+          "dependencyCheck": {
+            "invoke": {
+              "onDone": {
+                "target": "dependencyConfirm"
+              },
+              "onError": {
+                "target": "dependencyConfirm"
+              }
+            }
+          },
+          "dependencyConfirm": {
+            "always": [
+              {
+                "target": "summary"
+              }
+            ],
+            "invoke": {
+              "onDone": [
+                {
+                  "target": "dependencyInstall"
+                },
+                {
+                  "target": "summary"
+                }
+              ],
+              "onError": {
+                "target": "summary"
+              }
+            }
+          },
+          "dependencyInstall": {
+            "invoke": {
+              "onDone": {
+                "target": "summary"
+              },
+              "onError": {
+                "target": "summary"
+              }
+            }
+          },
+          "summary": {
+            "after": {
+              "100": "skillsInstall"
+            }
+          },
+          "skillsInstall": {
+            "invoke": {
+              "onDone": {
+                "target": "githubStar"
+              },
+              "onError": "githubStar"
+            }
+          },
+          "githubStar": {
+            "invoke": {
+              "onDone": "complete",
+              "onError": "complete"
+            }
+          },
+          "complete": {
+            "type": "final"
+          },
+          "error": {
+            "always": [
+              {
+                "guard": "hasFilesToRollback",
+                "target": "rollback"
+              },
+              {
+                "target": "exited"
+              }
+            ]
+          },
+          "cancelling": {
+            "always": [
+              {
+                "guard": "hasFilesToRollback",
+                "target": "rollback"
+              },
+              {
+                "target": "exited"
+              }
+            ]
+          },
+          "rollback": {
+            "invoke": {
+              "onDone": {
+                "target": "exited"
+              },
+              "onError": {
+                "target": "exited"
+              }
+            }
+          },
+          "exited": {
+            "type": "final"
+          }
+        }
+      },
+      "implementations": {
+        "actors": {
+          "preflight": {},
+          "modeSelection": {},
+          "hostedMode": {},
+          "backendOptions": {},
+          "frontendOptions": {},
+          "scriptsOption": {},
+          "fileGeneration": {},
+          "checkDependencies": {},
+          "installConfirm": {},
+          "dependencyInstall": {},
+          "rollback": {},
+          "skillsInstall": {},
+          "githubStar": {}
+        },
+        "actions": {},
+        "delays": {},
+        "guards": {}
+      },
+      "options": {
+        "maxIterations": null
+      },
+      "__xstatenode": true,
+      "idMap": {
+        "generate": {
+          "config": "[Circular]",
+          "key": "generate",
+          "id": "generate",
+          "type": "compound",
+          "path": [],
+          "states": {
+            "idle": {
+              "config": "[Circular]",
+              "key": "idle",
+              "id": "generate.idle",
+              "type": "atomic",
+              "path": [
+                "idle"
+              ],
+              "states": {},
+              "history": false,
+              "entry": [],
+              "exit": [],
+              "parent": "[Circular]",
+              "machine": "[Circular]",
+              "order": 1,
+              "tags": [],
+              "transitions": {
+                "START": [
+                  {
+                    "target": [
+                      {
+                        "config": "[Circular]",
+                        "key": "preflight",
+                        "id": "generate.preflight",
+                        "type": "atomic",
+                        "path": [
+                          "preflight"
+                        ],
+                        "states": "[Circular]",
+                        "history": false,
+                        "entry": [],
+                        "exit": [],
+                        "parent": "[Circular]",
+                        "machine": "[Circular]",
+                        "order": 2,
+                        "tags": [],
+                        "transitions": {
+                          "xstate.done.actor.0.generate.preflight": [
+                            {
+                              "target": [
+                                {
+                                  "config": "[Circular]",
+                                  "key": "modeSelection",
+                                  "id": "generate.modeSelection",
+                                  "type": "atomic",
+                                  "path": [
+                                    "modeSelection"
+                                  ],
+                                  "states": "[Circular]",
+                                  "history": false,
+                                  "entry": [],
+                                  "exit": [],
+                                  "parent": "[Circular]",
+                                  "machine": "[Circular]",
+                                  "order": 4,
+                                  "tags": [],
+                                  "transitions": {
+                                    "xstate.done.actor.0.generate.modeSelection": [
+                                      {
+                                        "target": [
+                                          {
+                                            "config": "[Circular]",
+                                            "key": "routeToMode",
+                                            "id": "generate.routeToMode",
+                                            "type": "atomic",
+                                            "path": [
+                                              "routeToMode"
+                                            ],
+                                            "states": "[Circular]",
+                                            "history": false,
+                                            "entry": [],
+                                            "exit": [],
+                                            "parent": "[Circular]",
+                                            "machine": "[Circular]",
+                                            "order": 5,
+                                            "tags": [],
+                                            "transitions": {},
+                                            "always": [
+                                              {
+                                                "guard": "isHostedMode",
+                                                "target": [
+                                                  {
+                                                    "config": "[Circular]",
+                                                    "key": "hostedMode",
+                                                    "id": "generate.hostedMode",
+                                                    "type": "atomic",
+                                                    "path": [
+                                                      "hostedMode"
+                                                    ],
+                                                    "states": "[Circular]",
+                                                    "history": false,
+                                                    "entry": [],
+                                                    "exit": [],
+                                                    "parent": "[Circular]",
+                                                    "machine": "[Circular]",
+                                                    "order": 6,
+                                                    "tags": [],
+                                                    "transitions": {
+                                                      "xstate.done.actor.0.generate.hostedMode": [
+                                                        {
+                                                          "target": [
+                                                            {
+                                                              "config": "[Circular]",
+                                                              "key": "backendOptions",
+                                                              "id": "generate.backendOptions",
+                                                              "type": "atomic",
+                                                              "path": [
+                                                                "backendOptions"
+                                                              ],
+                                                              "states": "[Circular]",
+                                                              "history": false,
+                                                              "entry": [],
+                                                              "exit": [],
+                                                              "parent": "[Circular]",
+                                                              "machine": "[Circular]",
+                                                              "order": 9,
+                                                              "tags": [],
+                                                              "transitions": {
+                                                                "xstate.done.actor.0.generate.backendOptions": [
+                                                                  {
+                                                                    "target": [
+                                                                      {
+                                                                        "config": "[Circular]",
+                                                                        "key": "frontendOptions",
+                                                                        "id": "generate.frontendOptions",
+                                                                        "type": "atomic",
+                                                                        "path": [
+                                                                          "frontendOptions"
+                                                                        ],
+                                                                        "states": "[Circular]",
+                                                                        "history": false,
+                                                                        "entry": [],
+                                                                        "exit": [],
+                                                                        "parent": "[Circular]",
+                                                                        "machine": "[Circular]",
+                                                                        "order": 10,
+                                                                        "tags": [],
+                                                                        "transitions": {
+                                                                          "xstate.done.actor.0.generate.frontendOptions": [
+                                                                            {
+                                                                              "target": [
+                                                                                {
+                                                                                  "config": "[Circular]",
+                                                                                  "key": "scriptsOptions",
+                                                                                  "id": "generate.scriptsOptions",
+                                                                                  "type": "atomic",
+                                                                                  "path": [
+                                                                                    "scriptsOptions"
+                                                                                  ],
+                                                                                  "states": "[Circular]",
+                                                                                  "history": false,
+                                                                                  "entry": [],
+                                                                                  "exit": [],
+                                                                                  "parent": "[Circular]",
+                                                                                  "machine": "[Circular]",
+                                                                                  "order": 11,
+                                                                                  "tags": [],
+                                                                                  "transitions": {
+                                                                                    "xstate.done.actor.0.generate.scriptsOptions": [
+                                                                                      {
+                                                                                        "target": [
+                                                                                          {
+                                                                                            "config": "[Circular]",
+                                                                                            "key": "fileGeneration",
+                                                                                            "id": "generate.fileGeneration",
+                                                                                            "type": "atomic",
+                                                                                            "path": [
+                                                                                              "fileGeneration"
+                                                                                            ],
+                                                                                            "states": "[Circular]",
+                                                                                            "history": false,
+                                                                                            "entry": [],
+                                                                                            "exit": [],
+                                                                                            "parent": "[Circular]",
+                                                                                            "machine": "[Circular]",
+                                                                                            "order": 12,
+                                                                                            "tags": [],
+                                                                                            "transitions": {
+                                                                                              "xstate.done.actor.0.generate.fileGeneration": [
+                                                                                                {
+                                                                                                  "target": [
+                                                                                                    {
+                                                                                                      "config": "[Circular]",
+                                                                                                      "key": "dependencyCheck",
+                                                                                                      "id": "generate.dependencyCheck",
+                                                                                                      "type": "atomic",
+                                                                                                      "path": [
+                                                                                                        "dependencyCheck"
+                                                                                                      ],
+                                                                                                      "states": "[Circular]",
+                                                                                                      "history": false,
+                                                                                                      "entry": [],
+                                                                                                      "exit": [],
+                                                                                                      "parent": "[Circular]",
+                                                                                                      "machine": "[Circular]",
+                                                                                                      "order": 13,
+                                                                                                      "tags": [],
+                                                                                                      "transitions": {
+                                                                                                        "xstate.done.actor.0.generate.dependencyCheck": [
+                                                                                                          {
+                                                                                                            "target": [
+                                                                                                              {
+                                                                                                                "config": "[Circular]",
+                                                                                                                "key": "dependencyConfirm",
+                                                                                                                "id": "generate.dependencyConfirm",
+                                                                                                                "type": "atomic",
+                                                                                                                "path": [
+                                                                                                                  "dependencyConfirm"
+                                                                                                                ],
+                                                                                                                "states": "[Circular]",
+                                                                                                                "history": false,
+                                                                                                                "entry": [],
+                                                                                                                "exit": [],
+                                                                                                                "parent": "[Circular]",
+                                                                                                                "machine": "[Circular]",
+                                                                                                                "order": 14,
+                                                                                                                "tags": [],
+                                                                                                                "transitions": {
+                                                                                                                  "xstate.done.actor.0.generate.dependencyConfirm": [
+                                                                                                                    {
+                                                                                                                      "target": [
+                                                                                                                        {
+                                                                                                                          "config": "[Circular]",
+                                                                                                                          "key": "dependencyInstall",
+                                                                                                                          "id": "generate.dependencyInstall",
+                                                                                                                          "type": "atomic",
+                                                                                                                          "path": [
+                                                                                                                            "dependencyInstall"
+                                                                                                                          ],
+                                                                                                                          "states": "[Circular]",
+                                                                                                                          "history": false,
+                                                                                                                          "entry": [],
+                                                                                                                          "exit": [],
+                                                                                                                          "parent": "[Circular]",
+                                                                                                                          "machine": "[Circular]",
+                                                                                                                          "order": 15,
+                                                                                                                          "tags": [],
+                                                                                                                          "transitions": {
+                                                                                                                            "xstate.done.actor.0.generate.dependencyInstall": [
+                                                                                                                              {
+                                                                                                                                "target": [
+                                                                                                                                  {
+                                                                                                                                    "config": "[Circular]",
+                                                                                                                                    "key": "summary",
+                                                                                                                                    "id": "generate.summary",
+                                                                                                                                    "type": "atomic",
+                                                                                                                                    "path": [
+                                                                                                                                      "summary"
+                                                                                                                                    ],
+                                                                                                                                    "states": "[Circular]",
+                                                                                                                                    "history": false,
+                                                                                                                                    "entry": [
+                                                                                                                                      null,
+                                                                                                                                      null
+                                                                                                                                    ],
+                                                                                                                                    "exit": [
+                                                                                                                                      null
+                                                                                                                                    ],
+                                                                                                                                    "parent": "[Circular]",
+                                                                                                                                    "machine": "[Circular]",
+                                                                                                                                    "order": 16,
+                                                                                                                                    "tags": [],
+                                                                                                                                    "transitions": {
+                                                                                                                                      "xstate.after.100.generate.summary": [
+                                                                                                                                        {
+                                                                                                                                          "target": [
+                                                                                                                                            {
+                                                                                                                                              "config": "[Circular]",
+                                                                                                                                              "key": "skillsInstall",
+                                                                                                                                              "id": "generate.skillsInstall",
+                                                                                                                                              "type": "atomic",
+                                                                                                                                              "path": [
+                                                                                                                                                "skillsInstall"
+                                                                                                                                              ],
+                                                                                                                                              "states": "[Circular]",
+                                                                                                                                              "history": false,
+                                                                                                                                              "entry": [],
+                                                                                                                                              "exit": [],
+                                                                                                                                              "parent": "[Circular]",
+                                                                                                                                              "machine": "[Circular]",
+                                                                                                                                              "order": 17,
+                                                                                                                                              "tags": [],
+                                                                                                                                              "transitions": {
+                                                                                                                                                "xstate.done.actor.0.generate.skillsInstall": [
+                                                                                                                                                  {
+                                                                                                                                                    "target": [
+                                                                                                                                                      {
+                                                                                                                                                        "config": "[Circular]",
+                                                                                                                                                        "key": "githubStar",
+                                                                                                                                                        "id": "generate.githubStar",
+                                                                                                                                                        "type": "atomic",
+                                                                                                                                                        "path": [
+                                                                                                                                                          "githubStar"
+                                                                                                                                                        ],
+                                                                                                                                                        "states": "[Circular]",
+                                                                                                                                                        "history": false,
+                                                                                                                                                        "entry": [],
+                                                                                                                                                        "exit": [],
+                                                                                                                                                        "parent": "[Circular]",
+                                                                                                                                                        "machine": "[Circular]",
+                                                                                                                                                        "order": 18,
+                                                                                                                                                        "tags": [],
+                                                                                                                                                        "transitions": {
+                                                                                                                                                          "xstate.done.actor.0.generate.githubStar": [
+                                                                                                                                                            {
+                                                                                                                                                              "target": [
+                                                                                                                                                                {
+                                                                                                                                                                  "config": "[Circular]",
+                                                                                                                                                                  "key": "complete",
+                                                                                                                                                                  "id": "generate.complete",
+                                                                                                                                                                  "type": "final",
+                                                                                                                                                                  "path": [
+                                                                                                                                                                    "complete"
+                                                                                                                                                                  ],
+                                                                                                                                                                  "states": "[Circular]",
+                                                                                                                                                                  "history": false,
+                                                                                                                                                                  "entry": [
+                                                                                                                                                                    null
+                                                                                                                                                                  ],
+                                                                                                                                                                  "exit": [],
+                                                                                                                                                                  "parent": "[Circular]",
+                                                                                                                                                                  "machine": "[Circular]",
+                                                                                                                                                                  "order": 19,
+                                                                                                                                                                  "tags": [],
+                                                                                                                                                                  "transitions": {}
+                                                                                                                                                                }
+                                                                                                                                                              ],
+                                                                                                                                                              "actions": [],
+                                                                                                                                                              "source": "[Circular]",
+                                                                                                                                                              "reenter": false,
+                                                                                                                                                              "eventType": "xstate.done.actor.0.generate.githubStar"
+                                                                                                                                                            }
+                                                                                                                                                          ],
+                                                                                                                                                          "xstate.error.actor.0.generate.githubStar": [
+                                                                                                                                                            {
+                                                                                                                                                              "target": [
+                                                                                                                                                                "[Circular]"
+                                                                                                                                                              ],
+                                                                                                                                                              "actions": [],
+                                                                                                                                                              "source": "[Circular]",
+                                                                                                                                                              "reenter": false,
+                                                                                                                                                              "eventType": "xstate.error.actor.0.generate.githubStar"
+                                                                                                                                                            }
+                                                                                                                                                          ]
+                                                                                                                                                        }
+                                                                                                                                                      }
+                                                                                                                                                    ],
+                                                                                                                                                    "actions": [
+                                                                                                                                                      null
+                                                                                                                                                    ],
+                                                                                                                                                    "source": "[Circular]",
+                                                                                                                                                    "reenter": false,
+                                                                                                                                                    "eventType": "xstate.done.actor.0.generate.skillsInstall"
+                                                                                                                                                  }
+                                                                                                                                                ],
+                                                                                                                                                "xstate.error.actor.0.generate.skillsInstall": [
+                                                                                                                                                  {
+                                                                                                                                                    "target": [
+                                                                                                                                                      "[Circular]"
+                                                                                                                                                    ],
+                                                                                                                                                    "actions": [],
+                                                                                                                                                    "source": "[Circular]",
+                                                                                                                                                    "reenter": false,
+                                                                                                                                                    "eventType": "xstate.error.actor.0.generate.skillsInstall"
+                                                                                                                                                  }
+                                                                                                                                                ]
+                                                                                                                                              }
+                                                                                                                                            }
+                                                                                                                                          ],
+                                                                                                                                          "event": "xstate.after.100.generate.summary",
+                                                                                                                                          "delay": 100,
+                                                                                                                                          "actions": [],
+                                                                                                                                          "source": "[Circular]",
+                                                                                                                                          "reenter": false,
+                                                                                                                                          "eventType": "xstate.after.100.generate.summary"
+                                                                                                                                        }
+                                                                                                                                      ]
+                                                                                                                                    }
+                                                                                                                                  }
+                                                                                                                                ],
+                                                                                                                                "actions": [
+                                                                                                                                  null
+                                                                                                                                ],
+                                                                                                                                "source": "[Circular]",
+                                                                                                                                "reenter": false,
+                                                                                                                                "eventType": "xstate.done.actor.0.generate.dependencyInstall"
+                                                                                                                              }
+                                                                                                                            ],
+                                                                                                                            "xstate.error.actor.0.generate.dependencyInstall": [
+                                                                                                                              {
+                                                                                                                                "target": [
+                                                                                                                                  "[Circular]"
+                                                                                                                                ],
+                                                                                                                                "actions": [
+                                                                                                                                  null
+                                                                                                                                ],
+                                                                                                                                "source": "[Circular]",
+                                                                                                                                "reenter": false,
+                                                                                                                                "eventType": "xstate.error.actor.0.generate.dependencyInstall"
+                                                                                                                              }
+                                                                                                                            ]
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      ],
+                                                                                                                      "actions": [
+                                                                                                                        null
+                                                                                                                      ],
+                                                                                                                      "source": "[Circular]",
+                                                                                                                      "reenter": false,
+                                                                                                                      "eventType": "xstate.done.actor.0.generate.dependencyConfirm"
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                      "target": [
+                                                                                                                        "[Circular]"
+                                                                                                                      ],
+                                                                                                                      "actions": [
+                                                                                                                        null
+                                                                                                                      ],
+                                                                                                                      "source": "[Circular]",
+                                                                                                                      "reenter": false,
+                                                                                                                      "eventType": "xstate.done.actor.0.generate.dependencyConfirm"
+                                                                                                                    }
+                                                                                                                  ],
+                                                                                                                  "xstate.error.actor.0.generate.dependencyConfirm": [
+                                                                                                                    {
+                                                                                                                      "target": [
+                                                                                                                        "[Circular]"
+                                                                                                                      ],
+                                                                                                                      "actions": [
+                                                                                                                        null
+                                                                                                                      ],
+                                                                                                                      "source": "[Circular]",
+                                                                                                                      "reenter": false,
+                                                                                                                      "eventType": "xstate.error.actor.0.generate.dependencyConfirm"
+                                                                                                                    }
+                                                                                                                  ]
+                                                                                                                },
+                                                                                                                "always": [
+                                                                                                                  {
+                                                                                                                    "target": [
+                                                                                                                      "[Circular]"
+                                                                                                                    ],
+                                                                                                                    "actions": [],
+                                                                                                                    "source": "[Circular]",
+                                                                                                                    "reenter": false,
+                                                                                                                    "eventType": ""
+                                                                                                                  }
+                                                                                                                ]
+                                                                                                              }
+                                                                                                            ],
+                                                                                                            "actions": [
+                                                                                                              null
+                                                                                                            ],
+                                                                                                            "source": "[Circular]",
+                                                                                                            "reenter": false,
+                                                                                                            "eventType": "xstate.done.actor.0.generate.dependencyCheck"
+                                                                                                          }
+                                                                                                        ],
+                                                                                                        "xstate.error.actor.0.generate.dependencyCheck": [
+                                                                                                          {
+                                                                                                            "target": [
+                                                                                                              "[Circular]"
+                                                                                                            ],
+                                                                                                            "actions": [],
+                                                                                                            "source": "[Circular]",
+                                                                                                            "reenter": false,
+                                                                                                            "eventType": "xstate.error.actor.0.generate.dependencyCheck"
+                                                                                                          }
+                                                                                                        ]
+                                                                                                      }
+                                                                                                    }
+                                                                                                  ],
+                                                                                                  "actions": [
+                                                                                                    null
+                                                                                                  ],
+                                                                                                  "source": "[Circular]",
+                                                                                                  "reenter": false,
+                                                                                                  "eventType": "xstate.done.actor.0.generate.fileGeneration"
+                                                                                                }
+                                                                                              ],
+                                                                                              "xstate.error.actor.0.generate.fileGeneration": [
+                                                                                                {
+                                                                                                  "target": [
+                                                                                                    {
+                                                                                                      "config": "[Circular]",
+                                                                                                      "key": "error",
+                                                                                                      "id": "generate.error",
+                                                                                                      "type": "atomic",
+                                                                                                      "path": [
+                                                                                                        "error"
+                                                                                                      ],
+                                                                                                      "states": "[Circular]",
+                                                                                                      "history": false,
+                                                                                                      "entry": [
+                                                                                                        null
+                                                                                                      ],
+                                                                                                      "exit": [],
+                                                                                                      "parent": "[Circular]",
+                                                                                                      "machine": "[Circular]",
+                                                                                                      "order": 20,
+                                                                                                      "tags": [],
+                                                                                                      "transitions": {},
+                                                                                                      "always": [
+                                                                                                        {
+                                                                                                          "guard": "hasFilesToRollback",
+                                                                                                          "target": [
+                                                                                                            {
+                                                                                                              "config": "[Circular]",
+                                                                                                              "key": "rollback",
+                                                                                                              "id": "generate.rollback",
+                                                                                                              "type": "atomic",
+                                                                                                              "path": [
+                                                                                                                "rollback"
+                                                                                                              ],
+                                                                                                              "states": "[Circular]",
+                                                                                                              "history": false,
+                                                                                                              "entry": [],
+                                                                                                              "exit": [],
+                                                                                                              "parent": "[Circular]",
+                                                                                                              "machine": "[Circular]",
+                                                                                                              "order": 22,
+                                                                                                              "tags": [],
+                                                                                                              "transitions": {
+                                                                                                                "xstate.done.actor.0.generate.rollback": [
+                                                                                                                  {
+                                                                                                                    "target": [
+                                                                                                                      {
+                                                                                                                        "config": "[Circular]",
+                                                                                                                        "key": "exited",
+                                                                                                                        "id": "generate.exited",
+                                                                                                                        "type": "final",
+                                                                                                                        "path": [
+                                                                                                                          "exited"
+                                                                                                                        ],
+                                                                                                                        "states": "[Circular]",
+                                                                                                                        "history": false,
+                                                                                                                        "entry": [],
+                                                                                                                        "exit": [],
+                                                                                                                        "parent": "[Circular]",
+                                                                                                                        "machine": "[Circular]",
+                                                                                                                        "order": 23,
+                                                                                                                        "tags": [],
+                                                                                                                        "transitions": {}
+                                                                                                                      }
+                                                                                                                    ],
+                                                                                                                    "actions": [
+                                                                                                                      null
+                                                                                                                    ],
+                                                                                                                    "source": "[Circular]",
+                                                                                                                    "reenter": false,
+                                                                                                                    "eventType": "xstate.done.actor.0.generate.rollback"
+                                                                                                                  }
+                                                                                                                ],
+                                                                                                                "xstate.error.actor.0.generate.rollback": [
+                                                                                                                  {
+                                                                                                                    "target": [
+                                                                                                                      "[Circular]"
+                                                                                                                    ],
+                                                                                                                    "actions": [
+                                                                                                                      null
+                                                                                                                    ],
+                                                                                                                    "source": "[Circular]",
+                                                                                                                    "reenter": false,
+                                                                                                                    "eventType": "xstate.error.actor.0.generate.rollback"
+                                                                                                                  }
+                                                                                                                ]
+                                                                                                              }
+                                                                                                            }
+                                                                                                          ],
+                                                                                                          "actions": [],
+                                                                                                          "source": "[Circular]",
+                                                                                                          "reenter": false,
+                                                                                                          "eventType": ""
+                                                                                                        },
+                                                                                                        {
+                                                                                                          "target": [
+                                                                                                            "[Circular]"
+                                                                                                          ],
+                                                                                                          "actions": [],
+                                                                                                          "source": "[Circular]",
+                                                                                                          "reenter": false,
+                                                                                                          "eventType": ""
+                                                                                                        }
+                                                                                                      ]
+                                                                                                    }
+                                                                                                  ],
+                                                                                                  "actions": [
+                                                                                                    null
+                                                                                                  ],
+                                                                                                  "source": "[Circular]",
+                                                                                                  "reenter": false,
+                                                                                                  "eventType": "xstate.error.actor.0.generate.fileGeneration"
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          }
+                                                                                        ],
+                                                                                        "actions": [
+                                                                                          null
+                                                                                        ],
+                                                                                        "source": "[Circular]",
+                                                                                        "reenter": false,
+                                                                                        "eventType": "xstate.done.actor.0.generate.scriptsOptions"
+                                                                                      }
+                                                                                    ],
+                                                                                    "xstate.error.actor.0.generate.scriptsOptions": [
+                                                                                      {
+                                                                                        "target": [
+                                                                                          {
+                                                                                            "config": "[Circular]",
+                                                                                            "key": "cancelling",
+                                                                                            "id": "generate.cancelling",
+                                                                                            "type": "atomic",
+                                                                                            "path": [
+                                                                                              "cancelling"
+                                                                                            ],
+                                                                                            "states": "[Circular]",
+                                                                                            "history": false,
+                                                                                            "entry": [
+                                                                                              null
+                                                                                            ],
+                                                                                            "exit": [],
+                                                                                            "parent": "[Circular]",
+                                                                                            "machine": "[Circular]",
+                                                                                            "order": 21,
+                                                                                            "tags": [],
+                                                                                            "transitions": {},
+                                                                                            "always": [
+                                                                                              {
+                                                                                                "guard": "hasFilesToRollback",
+                                                                                                "target": [
+                                                                                                  "[Circular]"
+                                                                                                ],
+                                                                                                "actions": [],
+                                                                                                "source": "[Circular]",
+                                                                                                "reenter": false,
+                                                                                                "eventType": ""
+                                                                                              },
+                                                                                              {
+                                                                                                "target": [
+                                                                                                  "[Circular]"
+                                                                                                ],
+                                                                                                "actions": [],
+                                                                                                "source": "[Circular]",
+                                                                                                "reenter": false,
+                                                                                                "eventType": ""
+                                                                                              }
+                                                                                            ]
+                                                                                          }
+                                                                                        ],
+                                                                                        "actions": [
+                                                                                          null
+                                                                                        ],
+                                                                                        "source": "[Circular]",
+                                                                                        "reenter": false,
+                                                                                        "eventType": "xstate.error.actor.0.generate.scriptsOptions"
+                                                                                      }
+                                                                                    ]
+                                                                                  }
+                                                                                }
+                                                                              ],
+                                                                              "actions": [
+                                                                                null
+                                                                              ],
+                                                                              "source": "[Circular]",
+                                                                              "reenter": false,
+                                                                              "eventType": "xstate.done.actor.0.generate.frontendOptions"
+                                                                            }
+                                                                          ],
+                                                                          "xstate.error.actor.0.generate.frontendOptions": [
+                                                                            {
+                                                                              "target": [
+                                                                                "[Circular]"
+                                                                              ],
+                                                                              "actions": [
+                                                                                null
+                                                                              ],
+                                                                              "source": "[Circular]",
+                                                                              "reenter": false,
+                                                                              "eventType": "xstate.error.actor.0.generate.frontendOptions"
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      }
+                                                                    ],
+                                                                    "actions": [
+                                                                      null
+                                                                    ],
+                                                                    "source": "[Circular]",
+                                                                    "reenter": false,
+                                                                    "eventType": "xstate.done.actor.0.generate.backendOptions"
+                                                                  }
+                                                                ],
+                                                                "xstate.error.actor.0.generate.backendOptions": [
+                                                                  {
+                                                                    "target": [
+                                                                      "[Circular]"
+                                                                    ],
+                                                                    "actions": [
+                                                                      null
+                                                                    ],
+                                                                    "source": "[Circular]",
+                                                                    "reenter": false,
+                                                                    "eventType": "xstate.error.actor.0.generate.backendOptions"
+                                                                  }
+                                                                ]
+                                                              }
+                                                            }
+                                                          ],
+                                                          "actions": [
+                                                            null
+                                                          ],
+                                                          "source": "[Circular]",
+                                                          "reenter": false,
+                                                          "eventType": "xstate.done.actor.0.generate.hostedMode"
+                                                        }
+                                                      ],
+                                                      "xstate.error.actor.0.generate.hostedMode": [
+                                                        {
+                                                          "target": [
+                                                            "[Circular]"
+                                                          ],
+                                                          "actions": [
+                                                            null
+                                                          ],
+                                                          "source": "[Circular]",
+                                                          "reenter": false,
+                                                          "eventType": "xstate.error.actor.0.generate.hostedMode"
+                                                        },
+                                                        {
+                                                          "target": [
+                                                            "[Circular]"
+                                                          ],
+                                                          "actions": [
+                                                            null
+                                                          ],
+                                                          "source": "[Circular]",
+                                                          "reenter": false,
+                                                          "eventType": "xstate.error.actor.0.generate.hostedMode"
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                ],
+                                                "actions": [],
+                                                "source": "[Circular]",
+                                                "reenter": false,
+                                                "eventType": ""
+                                              },
+                                              {
+                                                "guard": "isOfflineMode",
+                                                "target": [
+                                                  {
+                                                    "config": "[Circular]",
+                                                    "key": "offlineMode",
+                                                    "id": "generate.offlineMode",
+                                                    "type": "atomic",
+                                                    "path": [
+                                                      "offlineMode"
+                                                    ],
+                                                    "states": "[Circular]",
+                                                    "history": false,
+                                                    "entry": [],
+                                                    "exit": [],
+                                                    "parent": "[Circular]",
+                                                    "machine": "[Circular]",
+                                                    "order": 7,
+                                                    "tags": [],
+                                                    "transitions": {},
+                                                    "always": [
+                                                      {
+                                                        "target": [
+                                                          "[Circular]"
+                                                        ],
+                                                        "actions": [],
+                                                        "source": "[Circular]",
+                                                        "reenter": false,
+                                                        "eventType": ""
+                                                      }
+                                                    ]
+                                                  }
+                                                ],
+                                                "actions": [],
+                                                "source": "[Circular]",
+                                                "reenter": false,
+                                                "eventType": ""
+                                              },
+                                              {
+                                                "guard": "isCustomMode",
+                                                "target": [
+                                                  {
+                                                    "config": "[Circular]",
+                                                    "key": "customMode",
+                                                    "id": "generate.customMode",
+                                                    "type": "atomic",
+                                                    "path": [
+                                                      "customMode"
+                                                    ],
+                                                    "states": "[Circular]",
+                                                    "history": false,
+                                                    "entry": [],
+                                                    "exit": [],
+                                                    "parent": "[Circular]",
+                                                    "machine": "[Circular]",
+                                                    "order": 8,
+                                                    "tags": [],
+                                                    "transitions": {},
+                                                    "always": [
+                                                      {
+                                                        "target": [
+                                                          "[Circular]"
+                                                        ],
+                                                        "actions": [],
+                                                        "source": "[Circular]",
+                                                        "reenter": false,
+                                                        "eventType": ""
+                                                      }
+                                                    ]
+                                                  }
+                                                ],
+                                                "actions": [],
+                                                "source": "[Circular]",
+                                                "reenter": false,
+                                                "eventType": ""
+                                              },
+                                              {
+                                                "target": [
+                                                  "[Circular]"
+                                                ],
+                                                "actions": [],
+                                                "source": "[Circular]",
+                                                "reenter": false,
+                                                "eventType": ""
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "actions": [
+                                          null
+                                        ],
+                                        "source": "[Circular]",
+                                        "reenter": false,
+                                        "eventType": "xstate.done.actor.0.generate.modeSelection"
+                                      }
+                                    ],
+                                    "xstate.error.actor.0.generate.modeSelection": [
+                                      {
+                                        "target": [
+                                          "[Circular]"
+                                        ],
+                                        "actions": [
+                                          null
+                                        ],
+                                        "source": "[Circular]",
+                                        "reenter": false,
+                                        "eventType": "xstate.error.actor.0.generate.modeSelection"
+                                      }
+                                    ]
+                                  },
+                                  "always": [
+                                    {
+                                      "guard": "hasModeArg",
+                                      "target": [
+                                        "[Circular]"
+                                      ],
+                                      "actions": [
+                                        null
+                                      ],
+                                      "source": "[Circular]",
+                                      "reenter": false,
+                                      "eventType": ""
+                                    }
+                                  ]
+                                }
+                              ],
+                              "actions": "[Circular]",
+                              "source": "[Circular]",
+                              "reenter": false,
+                              "eventType": "xstate.done.actor.0.generate.preflight"
+                            },
+                            {
+                              "target": [
+                                {
+                                  "config": "[Circular]",
+                                  "key": "preflightError",
+                                  "id": "generate.preflightError",
+                                  "type": "atomic",
+                                  "path": [
+                                    "preflightError"
+                                  ],
+                                  "states": "[Circular]",
+                                  "history": false,
+                                  "entry": [
+                                    null,
+                                    null
+                                  ],
+                                  "exit": [
+                                    null
+                                  ],
+                                  "parent": "[Circular]",
+                                  "machine": "[Circular]",
+                                  "order": 3,
+                                  "tags": [],
+                                  "transitions": {
+                                    "RETRY": [
+                                      {
+                                        "target": [
+                                          "[Circular]"
+                                        ],
+                                        "actions": [
+                                          null
+                                        ],
+                                        "source": "[Circular]",
+                                        "reenter": false,
+                                        "eventType": "RETRY"
+                                      }
+                                    ],
+                                    "xstate.after.100.generate.preflightError": [
+                                      {
+                                        "target": [
+                                          "[Circular]"
+                                        ],
+                                        "event": "xstate.after.100.generate.preflightError",
+                                        "delay": 100,
+                                        "actions": [],
+                                        "source": "[Circular]",
+                                        "reenter": false,
+                                        "eventType": "xstate.after.100.generate.preflightError"
+                                      }
+                                    ]
+                                  }
+                                }
+                              ],
+                              "actions": [
+                                null
+                              ],
+                              "source": "[Circular]",
+                              "reenter": false,
+                              "eventType": "xstate.done.actor.0.generate.preflight"
+                            }
+                          ],
+                          "xstate.error.actor.0.generate.preflight": [
+                            {
+                              "target": [
+                                "[Circular]"
+                              ],
+                              "actions": [
+                                null
+                              ],
+                              "source": "[Circular]",
+                              "reenter": false,
+                              "eventType": "xstate.error.actor.0.generate.preflight"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "actions": [],
+                    "source": "[Circular]",
+                    "reenter": false,
+                    "eventType": "START"
+                  }
+                ]
+              }
+            },
+            "preflight": "[Circular]",
+            "preflightError": "[Circular]",
+            "modeSelection": "[Circular]",
+            "routeToMode": "[Circular]",
+            "hostedMode": "[Circular]",
+            "offlineMode": "[Circular]",
+            "customMode": "[Circular]",
+            "backendOptions": "[Circular]",
+            "frontendOptions": "[Circular]",
+            "scriptsOptions": "[Circular]",
+            "fileGeneration": "[Circular]",
+            "dependencyCheck": "[Circular]",
+            "dependencyConfirm": "[Circular]",
+            "dependencyInstall": "[Circular]",
+            "summary": "[Circular]",
+            "skillsInstall": "[Circular]",
+            "githubStar": "[Circular]",
+            "complete": "[Circular]",
+            "error": "[Circular]",
+            "cancelling": "[Circular]",
+            "rollback": "[Circular]",
+            "exited": "[Circular]"
+          },
+          "history": false,
+          "entry": [],
+          "exit": [],
+          "machine": "[Circular]",
+          "order": 0,
+          "tags": [],
+          "transitions": {
+            "CANCEL": [
+              {
+                "target": [
+                  "[Circular]"
+                ],
+                "actions": [
+                  null
+                ],
+                "source": "[Circular]",
+                "reenter": false,
+                "eventType": "CANCEL"
+              }
+            ]
+          }
+        },
+        "generate.idle": "[Circular]",
+        "generate.preflight": "[Circular]",
+        "generate.preflightError": "[Circular]",
+        "generate.modeSelection": "[Circular]",
+        "generate.routeToMode": "[Circular]",
+        "generate.hostedMode": "[Circular]",
+        "generate.offlineMode": "[Circular]",
+        "generate.customMode": "[Circular]",
+        "generate.backendOptions": "[Circular]",
+        "generate.frontendOptions": "[Circular]",
+        "generate.scriptsOptions": "[Circular]",
+        "generate.fileGeneration": "[Circular]",
+        "generate.dependencyCheck": "[Circular]",
+        "generate.dependencyConfirm": "[Circular]",
+        "generate.dependencyInstall": "[Circular]",
+        "generate.summary": "[Circular]",
+        "generate.skillsInstall": "[Circular]",
+        "generate.githubStar": "[Circular]",
+        "generate.complete": "[Circular]",
+        "generate.error": "[Circular]",
+        "generate.cancelling": "[Circular]",
+        "generate.rollback": "[Circular]",
+        "generate.exited": "[Circular]"
+      },
+      "root": "[Circular]",
+      "id": "generate",
+      "states": "[Circular]",
+      "events": [
+        "CANCEL",
+        "START",
+        "xstate.done.actor.0.generate.preflight",
+        "xstate.error.actor.0.generate.preflight",
+        "RETRY",
+        "xstate.after.100.generate.preflightError",
+        "xstate.done.actor.0.generate.modeSelection",
+        "xstate.error.actor.0.generate.modeSelection",
+        "xstate.done.actor.0.generate.hostedMode",
+        "xstate.error.actor.0.generate.hostedMode",
+        "xstate.done.actor.0.generate.backendOptions",
+        "xstate.error.actor.0.generate.backendOptions",
+        "xstate.done.actor.0.generate.frontendOptions",
+        "xstate.error.actor.0.generate.frontendOptions",
+        "xstate.done.actor.0.generate.scriptsOptions",
+        "xstate.error.actor.0.generate.scriptsOptions",
+        "xstate.done.actor.0.generate.fileGeneration",
+        "xstate.error.actor.0.generate.fileGeneration",
+        "xstate.done.actor.0.generate.dependencyCheck",
+        "xstate.error.actor.0.generate.dependencyCheck",
+        "xstate.done.actor.0.generate.dependencyConfirm",
+        "xstate.error.actor.0.generate.dependencyConfirm",
+        "xstate.done.actor.0.generate.dependencyInstall",
+        "xstate.error.actor.0.generate.dependencyInstall",
+        "xstate.after.100.generate.summary",
+        "xstate.done.actor.0.generate.skillsInstall",
+        "xstate.error.actor.0.generate.skillsInstall",
+        "xstate.done.actor.0.generate.githubStar",
+        "xstate.error.actor.0.generate.githubStar",
+        "xstate.done.actor.0.generate.rollback",
+        "xstate.error.actor.0.generate.rollback"
+      ]
+    },
+    "context": {
+      "projectRoot": "/Users/adrianbeston/Projects/big-pixel/bigpixel-community",
+      "framework": {
+        "name": "Next.js",
+        "version": "^16.2.6",
+        "pkg": "@c15t/nextjs",
+        "hasReact": true,
+        "reactVersion": "^19.2.6",
+        "tailwindVersion": "^4.3.0"
+      },
+      "packageManager": {
+        "name": "pnpm",
+        "version": null
+      },
+      "preflightPassed": true,
+      "preflightChecks": [
+        {
+          "name": "package.json",
+          "status": "pass",
+          "message": "Found package.json"
+        },
+        {
+          "name": "Framework",
+          "status": "pass",
+          "message": "Detected Next.js"
+        },
+        {
+          "name": "React",
+          "status": "pass",
+          "message": "Found React ^19.2.6"
+        },
+        {
+          "name": "Package Manager",
+          "status": "pass",
+          "message": "Using pnpm"
+        }
+      ],
+      "selectedMode": "hosted",
+      "modeArg": null,
+      "hostedProvider": null,
+      "backendURL": null,
+      "useEnvFile": true,
+      "proxyNextjs": true,
+      "enableSSR": false,
+      "enableDevTools": false,
+      "uiStyle": "prebuilt",
+      "expandedTheme": null,
+      "addScripts": false,
+      "selectedScripts": [],
+      "filesCreated": [],
+      "filesModified": [],
+      "dependenciesToAdd": [],
+      "installConfirmed": false,
+      "installAttempted": false,
+      "installSucceeded": false,
+      "runMigrations": false,
+      "skillsInstalled": false,
+      "cancelReason": null,
+      "cleanupDone": false,
+      "errors": [],
+      "stateHistory": []
+    },
+    "_nodes": [
+      "[Circular]",
+      "[Circular]"
+    ],
+    "value": "hostedMode",
+    "tags": [],
+    "children": {
+      "0.generate.hostedMode": {
+        "clock": {},
+        "options": {
+          "clock": "[Circular]",
+          "devTools": false,
+          "id": "0.generate.hostedMode",
+          "parent": {
+            "clock": "[Circular]",
+            "options": {
+              "clock": "[Circular]",
+              "devTools": false,
+              "input": {}
+            },
+            "id": "x:0",
+            "mailbox": {
+              "_active": true,
+              "_current": null,
+              "_last": null
+            },
+            "observers": [
+              {},
+              {}
+            ],
+            "eventListeners": {},
+            "ref": "[Circular]",
+            "sessionId": "x:0",
+            "_deferred": []
+          },
+          "syncSnapshot": false,
+          "input": {
+            "preselectedProvider": null
+          }
+        },
+        "id": "0.generate.hostedMode",
+        "mailbox": {
+          "_active": true,
+          "_current": null,
+          "_last": null
+        },
+        "observers": [],
+        "eventListeners": {},
+        "_syncSnapshot": false,
+        "ref": "[Circular]",
+        "sessionId": "x:3",
+        "_deferred": []
+      }
+    },
+    "historyValue": {}
+  }
+}
