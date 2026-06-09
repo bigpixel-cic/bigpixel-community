@@ -56,7 +56,7 @@ const legal = [
 export default function Footer() {
   return (
     <footer className="bg-metal-800 dark:bg-metal-950">
-      <div className="mx-auto max-w-7xl px-6 pt-20 pb-8 sm:pt-24 lg:px-8 lg:pt-32">
+      <div className="mx-auto max-w-7xl px-6 pt-16 pb-8 sm:pt-20 lg:px-8 lg:pt-24">
         <div className="xl:grid xl:grid-cols-2 xl:gap-8">
           <div className="space-y-6">
             <Image
@@ -81,65 +81,83 @@ export default function Footer() {
                 </Link>
               ))}
             </div>
+          </div>
+          <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8 xl:mt-0">
             <Image
-              className="h-16 self-start"
+              className="h-16 self-center place-self-center"
               src="/assets/climatehub.svg"
               alt="Climate Hub"
               width={155}
               height={64}
             />
-          </div>
-          <div className="mt-12 grid grid-cols-1 gap-8 xl:mt-0">
-            <div className="md:grid md:grid-cols-3 md:gap-8">
-              <div>
-                <h3 className="text-base/6 font-headline font-bold text-metal-50">Solutions</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {solutions.map((solution) => (
-                    <li key={solution.name}>
-                      <Link
-                        href={solution.url}
-                        className="text-metal-300 hover:text-metal-200 transition-colors duration-200 ease-out"
-                      >
-                        {solution.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-base/6 font-headline font-bold text-metal-50">Company</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {company.map((item) => (
-                    <li key={item.name}>
-                      <Link
-                        href={item.url}
-                        className="text-metal-300 hover:text-metal-200 transition-colors duration-200 ease-out"
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-base/6 font-headline font-bold text-metal-50">Legal</h3>
-                <ul className="mt-6 space-y-4">
-                  {legal.map((item) => (
-                    <li key={item.name}>
-                      <Link
-                        href={item.url}
-                        className="text-metal-300 hover:text-metal-200 transition-colors duration-200 ease-out"
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <Image
+              className="h-30 self-center place-self-center"
+              src="/assets/seukBadge.png"
+              alt="Certified Social Enterprise"
+              width={120}
+              height={120}
+            />
+            <div className="self-center place-self-center h-20 px-6 inline-flex justify-center items-center bg-metal-50 rounded-full">
+              <Image
+                className="self-center mt-5"
+                src="/assets/creativeeast.svg"
+                alt="Climate Hub"
+                width={130}
+                height={75}
+              />
             </div>
           </div>
         </div>
-        <div className="mt-12 border-t border-metal-600 pt-8 sm:mt-16 lg:mt-20 font-slab">
+        <div className="mt-6 border-t border-metal-600 pt-8 sm:mt-8 lg:mt-12">
+          <div className="md:grid md:grid-cols-3 md:gap-8">
+            <div>
+              <h3 className="text-base/6 font-headline font-bold text-metal-50">Solutions</h3>
+              <ul role="list" className="mt-6 space-y-4">
+                {solutions.map((solution) => (
+                  <li key={solution.name}>
+                    <Link
+                      href={solution.url}
+                      className="text-metal-300 hover:text-metal-200 transition-colors duration-200 ease-out"
+                    >
+                      {solution.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-10 md:mt-0">
+              <h3 className="text-base/6 font-headline font-bold text-metal-50">Company</h3>
+              <ul role="list" className="mt-6 space-y-4">
+                {company.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      href={item.url}
+                      className="text-metal-300 hover:text-metal-200 transition-colors duration-200 ease-out"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-10 md:mt-0">
+              <h3 className="text-base/6 font-headline font-bold text-metal-50">Legal</h3>
+              <ul className="mt-6 space-y-4">
+                {legal.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      href={item.url}
+                      className="text-metal-300 hover:text-metal-200 transition-colors duration-200 ease-out"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="mt-6 border-t border-metal-600 pt-8 sm:mt-8 lg:mt-12 font-slab">
           <p className="text-sm/6 text-metal-400">
             Big Pixel&reg; and the device mark are registered trademarks in the United Kingdom.
           </p>
