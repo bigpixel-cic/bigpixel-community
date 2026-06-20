@@ -1,65 +1,66 @@
+import Callout from '@/components/global/callout'
+import ResolvedLink from '@/components/global/resolved-link'
+import Image from '@/components/global/sanity-image'
+import CldVideoPlayer from '@/components/global/video-player'
 import {
   PortableText,
-  type PortableTextComponents,
   type PortableTextBlock,
-} from "next-sanity";
-import ResolvedLink from "@/components/global/resolved-link";
-import Image from "@/components/global/sanity-image";
-import CldVideoPlayer from "@/components/global/video-player";
-import Callout from "@/components/global/callout";
+  type PortableTextComponents,
+} from 'next-sanity'
 
 export default function CustomPortableText({
   className,
   value,
 }: {
-  className?: string;
-  value: PortableTextBlock[];
+  className?: string
+  value: PortableTextBlock[]
 }) {
   // Pre-process blocks to collect footnotes in order and assign numbers
   const footnotes: Array<{ _key: string; footnote: string; number: number }> =
-    [];
-  const footnoteNumberMap = new Map<string, number>();
+    []
+  const footnoteNumberMap = new Map<string, number>()
 
-  type FootnoteMarkDef = { _key: string; _type: string; footnote: string };
-  type BlockWithMarkDefs = { _type: string; markDefs?: FootnoteMarkDef[] };
+  type FootnoteMarkDef = { _key: string; _type: string; footnote: string }
+  type BlockWithMarkDefs = { _type: string; markDefs?: FootnoteMarkDef[] }
 
   value.forEach((block) => {
-    const b = block as unknown as BlockWithMarkDefs;
-    if (b._type === "block" && Array.isArray(b.markDefs)) {
+    const b = block as unknown as BlockWithMarkDefs
+    if (b._type === 'block' && Array.isArray(b.markDefs)) {
       b.markDefs.forEach((markDef) => {
         if (
-          markDef._type === "footnote" &&
+          markDef._type === 'footnote' &&
           !footnoteNumberMap.has(markDef._key)
         ) {
-          const number = footnotes.length + 1;
+          const number = footnotes.length + 1
           footnotes.push({
             _key: markDef._key,
             footnote: markDef.footnote,
             number,
-          });
-          footnoteNumberMap.set(markDef._key, number);
+          })
+          footnoteNumberMap.set(markDef._key, number)
         }
-      });
+      })
     }
-  });
+  })
 
   const components: PortableTextComponents = {
     types: {
       image: ({ value }) => {
         if (!value?.asset?._ref) {
-          return null;
+          return null
         }
 
         return (
           <figure className="my-8 text-sm/6 text-center text-metal-800 tracking-tight">
             <Image
               id={value.asset._ref}
-              alt={value.alt || ""}
+              alt={value.alt || ''}
               width={1200}
               sizes="(max-width: 640px) 100vw, (max-width: 1600px) 75vw, 60vw"
               crop={value.crop}
               mode="cover"
               className="rounded-lg"
+              loading="lazy"
             />
             {value.caption && (
               <figcaption className="mt-1.5 text-metal-500 italic">
@@ -67,11 +68,11 @@ export default function CustomPortableText({
               </figcaption>
             )}
           </figure>
-        );
+        )
       },
       video: ({ value }) => {
         if (!value?.url) {
-          return null;
+          return null
         }
         return (
           <CldVideoPlayer
@@ -80,22 +81,22 @@ export default function CustomPortableText({
             height={value.height}
             src={value.url}
           />
-        );
+        )
       },
       hr: ({ value }) => {
         return (
           <hr
             className={`border-metal-300 dark:border-metal-700 my-6 ${
-              value.style === "strong"
-                ? "border-2"
-                : value.style === "dashed"
-                  ? "border-dashed"
-                  : value.style === "light"
-                    ? "border-dotted"
-                    : "border"
+              value.style === 'strong'
+                ? 'border-2'
+                : value.style === 'dashed'
+                  ? 'border-dashed'
+                  : value.style === 'light'
+                    ? 'border-dotted'
+                    : 'border'
             }`}
           />
-        );
+        )
       },
       callout: ({ value }) => {
         return (
@@ -104,7 +105,7 @@ export default function CustomPortableText({
             bgColour={value.bgColour}
             icon={value.icon}
           />
-        );
+        )
       },
     },
     block: {
@@ -158,15 +159,15 @@ export default function CustomPortableText({
               </svg>
             </a>
           </h2>
-        );
+        )
       },
     },
     marks: {
       link: ({ children, value: link }) => {
-        return <ResolvedLink link={link}>{children}</ResolvedLink>;
+        return <ResolvedLink link={link}>{children}</ResolvedLink>
       },
       footnote: ({ value, children }) => {
-        const number = footnoteNumberMap.get(value._key as string);
+        const number = footnoteNumberMap.get(value._key as string)
         return (
           <span id={`src-${value._key}`} className="relative text-inherit">
             {children}
@@ -174,10 +175,10 @@ export default function CustomPortableText({
               <a href={`#note-${value._key}`}>{number}</a>
             </sup>
           </span>
-        );
+        )
       },
     },
-  };
+  }
 
   return (
     <div className={className}>
@@ -192,5 +193,5 @@ export default function CustomPortableText({
         </div>
       )}
     </div>
-  );
+  )
 }
