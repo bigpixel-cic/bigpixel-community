@@ -1,13 +1,17 @@
-import type { Metadata } from 'next';
-import { POSTS_QUERY } from '@/sanity/queries';
-import Image from 'next/image';
-import Link from 'next/link';
-import { urlFor } from '@/sanity/images';
-import { BoxGesture } from '@/components/motion';
-import { formatDate } from 'date-fns';
-import { sanityFetch, getDynamicFetchOptions, type DynamicFetchOptions } from '@/sanity/live';
-import { draftMode } from 'next/headers';
-import { Suspense } from 'react';
+import type { Metadata } from "next";
+import { POSTS_QUERY } from "@/sanity/queries";
+import Image from "next/image";
+import Link from "next/link";
+import { urlFor } from "@/sanity/images";
+import { BoxGesture } from "@/components/motion";
+import { formatDate } from "date-fns";
+import {
+  sanityFetch,
+  getDynamicFetchOptions,
+  type DynamicFetchOptions,
+} from "@/sanity/live";
+import { draftMode } from "next/headers";
+import { Suspense } from "react";
 
 type Post = {
   _id: string;
@@ -24,21 +28,28 @@ type Post = {
 };
 
 const bigPixel = {
-  url: process.env.NODE_ENV === 'production' ? 'https://bigpixel.org.uk' : 'http://localhost:3000',
-  title: 'News and Updates',
+  url:
+    process.env.NODE_ENV === "production"
+      ? "https://bigpixel.org.uk"
+      : "http://localhost:3000",
+  title: "News and Updates",
   description:
-    'Stay updated with the latest news and updates from Big Pixel, showcasing innovative digital services for charities, non-profits, and social enterprises.',
+    "Stay updated with the latest news and updates from Big Pixel, showcasing innovative digital services for charities, non-profits, and social enterprises.",
 };
 
 export const metadata: Metadata = {
   title: bigPixel.title,
   description: bigPixel.description,
-  keywords: ['digital services for charities', 'charity web design', 'charity web development'],
+  keywords: [
+    "digital services for charities",
+    "charity web design",
+    "charity web development",
+  ],
   openGraph: {
     title: `${bigPixel.title} - Big Pixel`,
     description: bigPixel.description,
     url: `${bigPixel.url}/news`,
-    siteName: 'Big Pixel',
+    siteName: "Big Pixel",
     images: [
       {
         url: `${bigPixel.url}/og/og-news.png`,
@@ -47,11 +58,11 @@ export const metadata: Metadata = {
         alt: bigPixel.title,
       },
     ],
-    locale: 'en_GB',
-    type: 'website',
+    locale: "en_GB",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: `${bigPixel.title} - Big Pixel`,
     description: bigPixel.description,
     images: [
@@ -83,7 +94,11 @@ async function DynamicNewsPage() {
 }
 
 async function CachedNewsPage({ perspective, stega }: DynamicFetchOptions) {
-  const { data } = await sanityFetch({ query: POSTS_QUERY, perspective, stega });
+  const { data } = await sanityFetch({
+    query: POSTS_QUERY,
+    perspective,
+    stega,
+  });
   const posts = data as Post[];
   return (
     <div className="flex flex-col items-start gap-8 lg:gap-12">
@@ -107,7 +122,7 @@ async function CachedNewsPage({ perspective, stega }: DynamicFetchOptions) {
               <div className="absolute inset-0 -z-10 rounded-2xl inset-ring inset-ring-metal-900/10 dark:inset-ring-white/10" />
               <div className="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm/6 text-metal-300">
                 <time dateTime={post.date} className="mr-8">
-                  {formatDate(post.date, 'PPP')}
+                  {formatDate(post.date, "PPP")}
                 </time>
                 <div className="-ml-4 flex items-center gap-x-4">
                   <svg
@@ -121,7 +136,10 @@ async function CachedNewsPage({ perspective, stega }: DynamicFetchOptions) {
                       alt=""
                       width={24}
                       height={24}
-                      src={urlFor(post.author.imageUrl).width(24).height(24).url()}
+                      src={urlFor(post.author.imageUrl)
+                        .width(24)
+                        .height(24)
+                        .url()}
                       className="size-6 flex-none rounded-full bg-white/10 dark:bg-metal-800/10"
                     />
                     {post.author.name}
@@ -129,7 +147,7 @@ async function CachedNewsPage({ perspective, stega }: DynamicFetchOptions) {
                 </div>
               </div>
               <h3 className="mt-3 text-lg/6 font-headline font-bold text-white">
-                <Link href={`/news/${post.slug}`}>
+                <Link rel="canonical" href={`/news/${post.slug}`}>
                   <span className="absolute inset-0" />
                   {post.title}
                 </Link>
@@ -148,7 +166,10 @@ function NewsPageFallback() {
       <div className="h-12 w-72 bg-metal-200 dark:bg-metal-800 rounded" />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
         {[0, 1, 2].map((i) => (
-          <div key={i} className="h-80 bg-metal-100 dark:bg-metal-800 rounded-2xl" />
+          <div
+            key={i}
+            className="h-80 bg-metal-100 dark:bg-metal-800 rounded-2xl"
+          />
         ))}
       </div>
     </div>

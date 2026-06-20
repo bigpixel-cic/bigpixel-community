@@ -1,27 +1,27 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Dialog } from '@base-ui/react/dialog';
-import Link from 'next/link';
-import Image from 'next/image';
-import { BarsIcon, XMarkIcon } from '@/components/icons';
+import { useState } from "react";
+import { Dialog } from "@base-ui/react/dialog";
+import Link from "next/link";
+import Image from "next/image";
+import { BarsIcon, XMarkIcon } from "@/components/icons";
 
 const navList = [
   {
-    label: 'About Big Pixel®',
-    slug: '/about',
+    label: "About Big Pixel®",
+    slug: "/about",
   },
   {
-    label: 'Projects',
-    slug: '/projects',
+    label: "Projects",
+    slug: "/projects",
   },
   {
-    label: 'Services',
-    slug: '/services',
+    label: "Services",
+    slug: "/services",
   },
   {
-    label: 'News',
-    slug: '/news',
+    label: "News",
+    slug: "/news",
   },
 ];
 
@@ -37,7 +37,7 @@ export default function Navbar() {
             className="w-full p-2 lg:p-4 bg-white/60 dark:bg-black/60 rounded-2xl lg:rounded-full outline-1 outline-metal-100 dark:outline-metal-950 backdrop-blur-sm inline-flex justify-between items-center overflow-hidden shadow-lg shadow-metal-300/30 dark:shadow-black/60"
           >
             <div className="flex lg:flex-1">
-              <Link href="/" className="-m-1 p-1">
+              <Link rel="canonical" href="/" className="-m-1 p-1">
                 <div className="size-8 lg:size-12 relative">
                   <span className="sr-only">Big Pixel</span>
                   <Image
@@ -61,7 +61,8 @@ export default function Navbar() {
               {navList.map((nav) => (
                 <Link
                   key={nav.label}
-                  href={nav.slug || '#'}
+                  rel="canonical"
+                  href={nav.slug || "#"}
                   scroll={false}
                   onClick={() => setOpen(false)}
                   className="font-medium tracking-tight px-6 py-3 rounded-full bg-transparent hover:bg-metal-100 dark:hover:bg-black transition-colors ease-in-out duration-300"
@@ -72,6 +73,7 @@ export default function Navbar() {
             </div>
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
               <Link
+                rel="canonical"
                 href="/contact"
                 scroll={false}
                 onClick={() => setOpen(false)}
@@ -85,7 +87,7 @@ export default function Navbar() {
             <Dialog.Backdrop className="z-20 fixed inset-0 bg-white dark:bg-black-900 p-6 supports-[-webkit-touch-callout:none]:absolute data-starting-style:-translate-x-full data-ending-style:-translate-x-full transition-all ease-in-out duration-200" />
             <Dialog.Popup className="z-20 fixed inset-0 p-6 data-starting-style:-translate-x-full data-ending-style:-translate-x-full transition-all ease-in-out duration-200">
               <div className="flex items-center justify-between">
-                <Link href="/">
+                <Link rel="canonical" href="/">
                   <div className="relative">
                     <span className="sr-only">Big Pixel</span>
                     <Image
@@ -109,7 +111,8 @@ export default function Navbar() {
                     {navList.map((nav) => (
                       <Link
                         key={nav.label}
-                        href={nav.slug || '#'}
+                        rel="canonical"
+                        href={nav.slug || "#"}
                         onClick={() => setOpen(false)}
                         className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-medium"
                       >
@@ -119,6 +122,7 @@ export default function Navbar() {
                   </div>
                   <div className="py-6">
                     <Link
+                      rel="canonical"
                       href="/contact"
                       onClick={() => setOpen(false)}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base/7 text-center font-medium text-white bg-metal-800 hover:bg-metal-950 dark:hover:bg-black transition-colors ease-in-out duration-300"

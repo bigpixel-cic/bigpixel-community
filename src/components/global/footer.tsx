@@ -1,9 +1,9 @@
-import Image from 'next/image';
-import { BlueSkyIcon, FacebookIcon, GitHubIcon, LinkedInIcon } from '../icons';
-import Link from 'next/link';
-import { Suspense } from 'react';
-import { CopyrightYear } from './copyright-year';
-import { ConsentDialogLink } from '@c15t/nextjs/components/consent-dialog-link';
+import Image from "next/image";
+import { BlueSkyIcon, FacebookIcon, GitHubIcon, LinkedInIcon } from "../icons";
+import Link from "next/link";
+import { Suspense } from "react";
+import { CopyrightYear } from "./copyright-year";
+import { ConsentDialogLink } from "@c15t/nextjs/components/consent-dialog-link";
 
 export function SiteFooter() {
   return (
@@ -15,42 +15,42 @@ export function SiteFooter() {
 
 const socials = [
   {
-    name: 'LinkedIn',
-    url: 'https://www.linkedin.com/company/bigpixelcic',
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/company/bigpixelcic",
     icon: LinkedInIcon,
   },
   {
-    name: 'Facebook',
-    url: 'https://www.facebook.com/bigpixelcic',
+    name: "Facebook",
+    url: "https://www.facebook.com/bigpixelcic",
     icon: FacebookIcon,
   },
   {
-    name: 'BlueSky',
-    url: 'https://bsky.app/profile/bigpixel.org.uk',
+    name: "BlueSky",
+    url: "https://bsky.app/profile/bigpixel.org.uk",
     icon: BlueSkyIcon,
   },
   {
-    name: 'GitHub',
-    url: 'https://github.com/bigpixel-cic',
+    name: "GitHub",
+    url: "https://github.com/bigpixel-cic",
     icon: GitHubIcon,
   },
 ];
 
 const solutions = [
-  { name: 'Projects', url: '/projects' },
-  { name: 'Our Services', url: '/services' },
+  { name: "Projects", url: "/projects" },
+  { name: "Our Services", url: "/services" },
 ];
 
 const company = [
-  { name: 'About', url: '/about' },
+  { name: "About", url: "/about" },
   /* { name: 'Business Plan', url: '#' }, */
-  { name: 'News', url: '#' },
+  { name: "News", url: "#" },
 ];
 
 const legal = [
-  { name: 'Privacy Policy', url: '/privacy' },
-  { name: 'Cookie Policy', url: '/cookie' },
-  { name: 'Terms of Use', url: '/terms' },
+  { name: "Privacy Policy", url: "/privacy" },
+  { name: "Cookie Policy", url: "/cookie" },
+  { name: "Terms of Use", url: "/terms" },
 ];
 
 export default function Footer() {
@@ -73,6 +73,7 @@ export default function Footer() {
               {socials.map((social) => (
                 <Link
                   key={social.name}
+                  rel="canonical"
                   href={social.url}
                   className="text-metal-300 hover:text-metal-200 transition-colors duration-200 ease-out"
                 >
@@ -111,11 +112,14 @@ export default function Footer() {
         <div className="mt-6 border-t border-metal-600 pt-8 sm:mt-8 lg:mt-12">
           <div className="md:grid md:grid-cols-3 md:gap-8">
             <div>
-              <h3 className="text-base/6 font-headline font-bold text-metal-50">Solutions</h3>
+              <h3 className="text-base/6 font-headline font-bold text-metal-50">
+                Solutions
+              </h3>
               <ul role="list" className="mt-6 space-y-4">
                 {solutions.map((solution) => (
                   <li key={solution.name}>
                     <Link
+                      rel="canonical"
                       href={solution.url}
                       className="text-metal-300 hover:text-metal-200 transition-colors duration-200 ease-out"
                     >
@@ -126,11 +130,14 @@ export default function Footer() {
               </ul>
             </div>
             <div className="mt-10 md:mt-0">
-              <h3 className="text-base/6 font-headline font-bold text-metal-50">Company</h3>
+              <h3 className="text-base/6 font-headline font-bold text-metal-50">
+                Company
+              </h3>
               <ul role="list" className="mt-6 space-y-4">
                 {company.map((item) => (
                   <li key={item.name}>
                     <Link
+                      rel="canonical"
                       href={item.url}
                       className="text-metal-300 hover:text-metal-200 transition-colors duration-200 ease-out"
                     >
@@ -141,11 +148,14 @@ export default function Footer() {
               </ul>
             </div>
             <div className="mt-10 md:mt-0">
-              <h3 className="text-base/6 font-headline font-bold text-metal-50">Legal</h3>
+              <h3 className="text-base/6 font-headline font-bold text-metal-50">
+                Legal
+              </h3>
               <ul className="mt-6 space-y-4">
                 {legal.map((item) => (
                   <li key={item.name}>
                     <Link
+                      rel="canonical"
                       href={item.url}
                       className="text-metal-300 hover:text-metal-200 transition-colors duration-200 ease-out"
                     >
@@ -159,20 +169,21 @@ export default function Footer() {
         </div>
         <div className="mt-6 border-t border-metal-600 pt-8 sm:mt-8 lg:mt-12 font-slab">
           <p className="text-sm/6 text-metal-400">
-            Big Pixel&reg; and the device mark are registered trademarks in the United Kingdom.
+            Big Pixel&reg; and the device mark are registered trademarks in the
+            United Kingdom.
           </p>
           <p className="text-sm/6 text-balance text-metal-400">
-            A Community Interest Company registered in England and Wales, No. 17201222. Company
-            limited by guarantee. Registered office: Carrow House, 301 King Street, Norwich, NR1
-            2TG.
+            A Community Interest Company registered in England and Wales, No.
+            17201222. Company limited by guarantee. Registered office: Carrow
+            House, 301 King Street, Norwich, NR1 2TG.
           </p>
         </div>
         <div className="mt-8 border-t border-metal-600 pt-8 font-slab flex flex-col items-center gap-y-4 sm:flex-row sm:justify-between">
           <p className="text-sm/6 text-metal-400">
-            &copy;{' '}
+            &copy;{" "}
             <Suspense fallback="2026">
               <CopyrightYear />
-            </Suspense>{' '}
+            </Suspense>{" "}
             Big Pixel Community CIC. All rights reserved.
           </p>
           <ConsentDialogLink className="text-sm text-metal-400 font-sans hover:text-metal-200 transition-colors duration-200 ease-out">

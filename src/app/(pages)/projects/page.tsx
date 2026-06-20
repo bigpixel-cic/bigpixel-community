@@ -1,12 +1,16 @@
-import type { Metadata } from 'next';
-import { PROJECTS_QUERY } from '@/sanity/queries';
-import Image from 'next/image';
-import Link from 'next/link';
-import { urlFor } from '@/sanity/images';
-import { BoxGesture } from '@/components/motion';
-import { sanityFetch, getDynamicFetchOptions, type DynamicFetchOptions } from '@/sanity/live';
-import { draftMode } from 'next/headers';
-import { Suspense } from 'react';
+import type { Metadata } from "next";
+import { PROJECTS_QUERY } from "@/sanity/queries";
+import Image from "next/image";
+import Link from "next/link";
+import { urlFor } from "@/sanity/images";
+import { BoxGesture } from "@/components/motion";
+import {
+  sanityFetch,
+  getDynamicFetchOptions,
+  type DynamicFetchOptions,
+} from "@/sanity/live";
+import { draftMode } from "next/headers";
+import { Suspense } from "react";
 
 type Project = {
   _id: string;
@@ -18,21 +22,28 @@ type Project = {
 };
 
 const bigPixel = {
-  url: process.env.NODE_ENV === 'production' ? 'https://bigpixel.org.uk' : 'http://localhost:3000',
-  title: 'Projects',
+  url:
+    process.env.NODE_ENV === "production"
+      ? "https://bigpixel.org.uk"
+      : "http://localhost:3000",
+  title: "Projects",
   description:
-    'Explore the projects portfolio of Big Pixel, showcasing innovative digital services for charities, non-profits, and social enterprises.',
+    "Explore the projects portfolio of Big Pixel, showcasing innovative digital services for charities, non-profits, and social enterprises.",
 };
 
 export const metadata: Metadata = {
   title: bigPixel.title,
   description: bigPixel.description,
-  keywords: ['digital services for charities', 'charity web design', 'charity web development'],
+  keywords: [
+    "digital services for charities",
+    "charity web design",
+    "charity web development",
+  ],
   openGraph: {
     title: `${bigPixel.title} - Big Pixel`,
     description: bigPixel.description,
     url: `${bigPixel.url}/projects`,
-    siteName: 'Big Pixel',
+    siteName: "Big Pixel",
     images: [
       {
         url: `${bigPixel.url}/og/og-projects.png`,
@@ -41,11 +52,11 @@ export const metadata: Metadata = {
         alt: bigPixel.title,
       },
     ],
-    locale: 'en_GB',
-    type: 'website',
+    locale: "en_GB",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: `${bigPixel.title} - Big Pixel`,
     description: bigPixel.description,
     images: [
@@ -77,7 +88,11 @@ async function DynamicProjectsPage() {
 }
 
 async function CachedProjectsPage({ perspective, stega }: DynamicFetchOptions) {
-  const { data } = await sanityFetch({ query: PROJECTS_QUERY, perspective, stega });
+  const { data } = await sanityFetch({
+    query: PROJECTS_QUERY,
+    perspective,
+    stega,
+  });
   const projects = data as Project[];
   return (
     <div className="flex flex-col items-start gap-8 lg:gap-12">
@@ -89,6 +104,7 @@ async function CachedProjectsPage({ perspective, stega }: DynamicFetchOptions) {
           <BoxGesture key={project._id}>
             <li className="h-full rounded-lg bg-white shadow-md dark:divide-white/10 dark:bg-metal-800/50 dark:shadow-none dark:outline dark:-outline-offset-1 dark:outline-white/10">
               <Link
+                rel="canonical"
                 href={`/projects/${project.slug}`}
                 className="divide-y divide-metal-200 overflow-hidden"
               >
@@ -96,7 +112,10 @@ async function CachedProjectsPage({ perspective, stega }: DynamicFetchOptions) {
                   {project.coverImage && (
                     <div className="relative aspect-video w-full rounded-md bg-gray-50">
                       <Image
-                        src={urlFor(project.coverImage).width(800).height(450).url()}
+                        src={urlFor(project.coverImage)
+                          .width(800)
+                          .height(450)
+                          .url()}
                         alt={project.altText || project.title}
                         fill
                         sizes="(max-width: 1024px) 100vw, 33vw"
@@ -106,7 +125,9 @@ async function CachedProjectsPage({ perspective, stega }: DynamicFetchOptions) {
                   )}
                 </div>
                 <div className="px-4 py-4 sm:px-6">
-                  <h2 className="font-headline font-bold text-xl">{project.title}</h2>
+                  <h2 className="font-headline font-bold text-xl">
+                    {project.title}
+                  </h2>
                   {project.subtitle && (
                     <p className="mt-1 text-sm text-gray-600 font-slab text-balance">
                       {project.subtitle}
@@ -131,7 +152,10 @@ function ProjectsPageFallback() {
       <div className="h-12 w-72 bg-metal-200 dark:bg-metal-800 rounded" />
       <ul className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
         {[0, 1, 2].map((i) => (
-          <li key={i} className="h-64 bg-metal-100 dark:bg-metal-800 rounded-lg" />
+          <li
+            key={i}
+            className="h-64 bg-metal-100 dark:bg-metal-800 rounded-lg"
+          />
         ))}
       </ul>
     </div>
