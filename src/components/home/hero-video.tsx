@@ -9,8 +9,8 @@ export default function HeroVideo() {
                 Look as good as the work you do
               </h1>
               <p className="text-xl md:text-2xl lg:text-3xl 2xl:text-5xl text-white leading-tight">
-                Digital strategy, design, and web development for charities, non-profits &amp;
-                social enterprises.
+                Digital strategy, design, and web development for charities,
+                non-profits &amp; social enterprises.
               </p>
             </div>
           </div>
@@ -22,13 +22,10 @@ export default function HeroVideo() {
         loop
         muted
         playsInline
-        poster="https://res.cloudinary.com/dzm5kamkv/video/upload/f_jpg,so_50p/hero-video_s6rawa"
+        poster="/assets/hero-video.webp"
       >
-        <source
-          src="https://res.cloudinary.com/dzm5kamkv/video/upload/f_auto,q_auto/hero-video_s6rawa"
-          type="video/mp4"
-        />
+        <source src="/assets/hero-video.webm" type='video/webm; codecs="vp9"' />
       </video>
     </div>
-  );
+  )
 }
