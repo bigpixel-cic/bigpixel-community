@@ -1,21 +1,25 @@
-import type { Metadata, ResolvingMetadata } from 'next';
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import { POSTS_SLUGS_QUERY, POST_QUERY, POST_METADATA_QUERY } from '@/sanity/queries';
-import { urlFor } from '@/sanity/images';
-import PortableText from '@/components/global/portable-text';
-import { SlideInTop } from '@/components/motion';
-import { type PortableTextBlock } from 'next-sanity';
-import { formatDate } from 'date-fns';
+import type { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import {
+  POSTS_SLUGS_QUERY,
+  POST_QUERY,
+  POST_METADATA_QUERY,
+} from "@/sanity/queries";
+import { urlFor } from "@/sanity/images";
+import PortableText from "@/components/global/portable-text";
+import { SlideInTop } from "@/components/motion";
+import { type PortableTextBlock } from "next-sanity";
+import { formatDate } from "date-fns";
 import {
   sanityFetch,
   sanityFetchStaticParams,
   sanityFetchMetadata,
   getDynamicFetchOptions,
   type DynamicFetchOptions,
-} from '@/sanity/live';
-import { draftMode } from 'next/headers';
-import { Suspense } from 'react';
+} from "@/sanity/live";
+import { draftMode } from "next/headers";
+import { Suspense } from "react";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -44,12 +48,20 @@ type Post = {
 };
 
 export async function generateStaticParams() {
-  const { data: slugs } = await sanityFetchStaticParams({ query: POSTS_SLUGS_QUERY });
+  const { data: slugs } = await sanityFetchStaticParams({
+    query: POSTS_SLUGS_QUERY,
+  });
   return (slugs as string[]).map((slug) => ({ slug }));
 }
 
-export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
-  const [{ slug }, { perspective }] = await Promise.all([props.params, getDynamicFetchOptions()]);
+export async function generateMetadata(
+  props: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const [{ slug }, { perspective }] = await Promise.all([
+    props.params,
+    getDynamicFetchOptions(),
+  ]);
   const { data } = await sanityFetchMetadata({
     query: POST_METADATA_QUERY,
     params: { slug },
@@ -61,9 +73,10 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
     return {};
   }
 
-  const keywordData = [metadata.primaryKeyword, ...(metadata.keywords || [])].filter(
-    (k): k is string => k !== null
-  );
+  const keywordData = [
+    metadata.primaryKeyword,
+    ...(metadata.keywords || []),
+  ].filter((k): k is string => k !== null);
 
   const previousImages = (await parent).openGraph?.images || [];
 
@@ -73,13 +86,19 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
     keywords:
       keywordData.length > 0
         ? keywordData
-        : ['digital services for charities', 'charity web design', 'charity web development'],
+        : [
+            "digital services for charities",
+            "charity web design",
+            "charity web development",
+          ],
     openGraph: {
-      title: metadata.title || 'Big Pixel - Projects',
+      title: metadata.title || "Big Pixel - Projects",
       description:
         metadata.description ||
-        'Explore the projects portfolio of Big Pixel, showcasing innovative digital services for charities, non-profits, and social enterprises.',
-      images: metadata.ogImage ? [metadata.ogImage, ...previousImages] : previousImages,
+        "Explore the projects portfolio of Big Pixel, showcasing innovative digital services for charities, non-profits, and social enterprises.",
+      images: metadata.ogImage
+        ? [metadata.ogImage, ...previousImages]
+        : previousImages,
     },
   } satisfies Metadata;
 }
@@ -97,8 +116,11 @@ export default async function Page(props: Props) {
   return <CachedPostPage slug={slug} perspective="published" stega={false} />;
 }
 
-async function DynamicPostPage({ params }: Pick<Props, 'params'>) {
-  const [{ slug }, { perspective, stega }] = await Promise.all([params, getDynamicFetchOptions()]);
+async function DynamicPostPage({ params }: Pick<Props, "params">) {
+  const [{ slug }, { perspective, stega }] = await Promise.all([
+    params,
+    getDynamicFetchOptions(),
+  ]);
   return <CachedPostPage slug={slug} perspective={perspective} stega={stega} />;
 }
 
@@ -124,8 +146,11 @@ async function CachedPostPage({
       <h1 className="font-headline font-black text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
         {post.title}
       </h1>
-      <time dateTime={post.date} className="font-semibold text-sm md:text-base text-metal-500">
-        {formatDate(post.date, 'PPP')}
+      <time
+        dateTime={post.date}
+        className="font-semibold text-sm md:text-base text-metal-500"
+      >
+        {formatDate(post.date, "PPP")}
       </time>
       {post.coverImage && (
         <div className="w-full">
@@ -137,6 +162,8 @@ async function CachedPostPage({
               height={630}
               className="w-full h-auto rounded-lg"
               loading="eager"
+              fetchPriority="high"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
             />
           </SlideInTop>
         </div>

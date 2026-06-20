@@ -1,8 +1,12 @@
-import { PortableText, type PortableTextComponents, type PortableTextBlock } from 'next-sanity';
-import ResolvedLink from '@/components/global/resolved-link';
-import Image from '@/components/global/sanity-image';
-import CldVideoPlayer from '@/components/global/video-player';
-import Callout from '@/components/global/callout';
+import {
+  PortableText,
+  type PortableTextComponents,
+  type PortableTextBlock,
+} from "next-sanity";
+import ResolvedLink from "@/components/global/resolved-link";
+import Image from "@/components/global/sanity-image";
+import CldVideoPlayer from "@/components/global/video-player";
+import Callout from "@/components/global/callout";
 
 export default function CustomPortableText({
   className,
@@ -12,7 +16,8 @@ export default function CustomPortableText({
   value: PortableTextBlock[];
 }) {
   // Pre-process blocks to collect footnotes in order and assign numbers
-  const footnotes: Array<{ _key: string; footnote: string; number: number }> = [];
+  const footnotes: Array<{ _key: string; footnote: string; number: number }> =
+    [];
   const footnoteNumberMap = new Map<string, number>();
 
   type FootnoteMarkDef = { _key: string; _type: string; footnote: string };
@@ -20,11 +25,18 @@ export default function CustomPortableText({
 
   value.forEach((block) => {
     const b = block as unknown as BlockWithMarkDefs;
-    if (b._type === 'block' && Array.isArray(b.markDefs)) {
+    if (b._type === "block" && Array.isArray(b.markDefs)) {
       b.markDefs.forEach((markDef) => {
-        if (markDef._type === 'footnote' && !footnoteNumberMap.has(markDef._key)) {
+        if (
+          markDef._type === "footnote" &&
+          !footnoteNumberMap.has(markDef._key)
+        ) {
           const number = footnotes.length + 1;
-          footnotes.push({ _key: markDef._key, footnote: markDef.footnote, number });
+          footnotes.push({
+            _key: markDef._key,
+            footnote: markDef.footnote,
+            number,
+          });
           footnoteNumberMap.set(markDef._key, number);
         }
       });
@@ -42,15 +54,17 @@ export default function CustomPortableText({
           <figure className="my-8 text-sm/6 text-center text-metal-800 tracking-tight">
             <Image
               id={value.asset._ref}
-              alt={value.alt || ''}
+              alt={value.alt || ""}
               width={1200}
-              sizes="(max-width: 768px) 100vw, (max-width:1200px) 75vw, 50vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 1600px) 75vw, 60vw"
               crop={value.crop}
               mode="cover"
               className="rounded-lg"
             />
             {value.caption && (
-              <figcaption className="mt-1.5 text-metal-500 italic">{value.caption}</figcaption>
+              <figcaption className="mt-1.5 text-metal-500 italic">
+                {value.caption}
+              </figcaption>
             )}
           </figure>
         );
@@ -72,19 +86,25 @@ export default function CustomPortableText({
         return (
           <hr
             className={`border-metal-300 dark:border-metal-700 my-6 ${
-              value.style === 'strong'
-                ? 'border-2'
-                : value.style === 'dashed'
-                  ? 'border-dashed'
-                  : value.style === 'light'
-                    ? 'border-dotted'
-                    : 'border'
+              value.style === "strong"
+                ? "border-2"
+                : value.style === "dashed"
+                  ? "border-dashed"
+                  : value.style === "light"
+                    ? "border-dotted"
+                    : "border"
             }`}
           />
         );
       },
       callout: ({ value }) => {
-        return <Callout text={value.text} bgColour={value.bgColour} icon={value.icon} />;
+        return (
+          <Callout
+            text={value.text}
+            bgColour={value.bgColour}
+            icon={value.icon}
+          />
+        );
       },
     },
     block: {
