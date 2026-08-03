@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@import '@c15t/nextjs/styles.css';
 @plugin '@tailwindcss/typography';
 @source "../src";
 

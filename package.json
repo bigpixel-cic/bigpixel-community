@@ -11,17 +11,12 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
-    "@c15t/dev-tools": "^2.1.0",
-    "@c15t/nextjs": "^2.1.0",
-    "@c15t/scripts": "^2.1.0",
-    "@next/third-parties": "^16.2.9",
     "@sanity/image-url": "^2.1.1",
     "chart.js": "^4.5.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.4.0",
     "motion": "^12.40.0",
     "next": "^16.2.9",
-    "next-cloudinary": "^6.17.5",
     "next-sanity": "^13.1.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
@@ -41,5 +36,6 @@
     "prettier": "^3.8.4",
     "tailwindcss": "^4.3.1",
     "typescript": "^5.9.3"
-  }
+  },
+  "packageManager": "pnpm@11.20.0+sha512.9a6f330a95b66446ea088faf1521405a8a01f07fde7124cc9958dfed52d4bb436737e65b08f85f37b46fcba375092558ac51262b816844b22f63406ed166bfee"
 }

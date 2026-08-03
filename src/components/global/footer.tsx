@@ -1,57 +1,48 @@
-import Image from "next/image";
-import { BlueSkyIcon, FacebookIcon, GitHubIcon, LinkedInIcon } from "../icons";
-import Link from "next/link";
-import { Suspense } from "react";
-import { CopyrightYear } from "./copyright-year";
-import { ConsentDialogLink } from "@c15t/nextjs/components/consent-dialog-link";
-
-export function SiteFooter() {
-  return (
-    <footer>
-      <ConsentDialogLink>Your privacy settings</ConsentDialogLink>
-    </footer>
-  );
-}
+import Image from 'next/image'
+import Link from 'next/link'
+import { Suspense } from 'react'
+import { BlueSkyIcon, FacebookIcon, GitHubIcon, LinkedInIcon } from '../icons'
+import { CopyrightYear } from './copyright-year'
 
 const socials = [
   {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/company/bigpixelcic",
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/company/bigpixelcic',
     icon: LinkedInIcon,
   },
   {
-    name: "Facebook",
-    url: "https://www.facebook.com/bigpixelcic",
+    name: 'Facebook',
+    url: 'https://www.facebook.com/bigpixelcic',
     icon: FacebookIcon,
   },
   {
-    name: "BlueSky",
-    url: "https://bsky.app/profile/bigpixel.org.uk",
+    name: 'BlueSky',
+    url: 'https://bsky.app/profile/bigpixel.org.uk',
     icon: BlueSkyIcon,
   },
   {
-    name: "GitHub",
-    url: "https://github.com/bigpixel-cic",
+    name: 'GitHub',
+    url: 'https://github.com/bigpixel-cic',
     icon: GitHubIcon,
   },
-];
+]
 
 const solutions = [
-  { name: "Projects", url: "/projects" },
-  { name: "Our Services", url: "/services" },
-];
+  { name: 'Projects', url: '/projects' },
+  { name: 'Our Services', url: '/services' },
+]
 
 const company = [
-  { name: "About", url: "/about" },
+  { name: 'About', url: '/about' },
   /* { name: 'Business Plan', url: '#' }, */
-  { name: "News", url: "#" },
-];
+  { name: 'News', url: '#' },
+]
 
 const legal = [
-  { name: "Privacy Policy", url: "/privacy" },
-  { name: "Cookie Policy", url: "/cookie" },
-  { name: "Terms of Use", url: "/terms" },
-];
+  { name: 'Privacy Policy', url: '/privacy' },
+  { name: 'Cookie Policy', url: '/cookie' },
+  { name: 'Terms of Use', url: '/terms' },
+]
 
 export default function Footer() {
   return (
@@ -180,17 +171,14 @@ export default function Footer() {
         </div>
         <div className="mt-8 border-t border-metal-600 pt-8 font-slab flex flex-col items-center gap-y-4 sm:flex-row sm:justify-between">
           <p className="text-sm/6 text-metal-400">
-            &copy;{" "}
+            &copy;{' '}
             <Suspense fallback="2026">
               <CopyrightYear />
-            </Suspense>{" "}
+            </Suspense>{' '}
             Big Pixel Community CIC. All rights reserved.
           </p>
-          <ConsentDialogLink className="text-sm text-metal-400 font-sans hover:text-metal-200 transition-colors duration-200 ease-out">
-            <span>Manage Preferences</span>
-          </ConsentDialogLink>
         </div>
       </div>
     </footer>
-  );
+  )
 }

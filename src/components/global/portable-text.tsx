@@ -1,7 +1,6 @@
 import Callout from '@/components/global/callout'
 import ResolvedLink from '@/components/global/resolved-link'
 import Image from '@/components/global/sanity-image'
-import CldVideoPlayer from '@/components/global/video-player'
 import {
   PortableText,
   type PortableTextBlock,
@@ -75,12 +74,17 @@ export default function CustomPortableText({
           return null
         }
         return (
-          <CldVideoPlayer
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             id={value.public_id}
             width={value.width}
             height={value.height}
-            src={value.url}
-          />
+          >
+            <source src={value.url} />
+          </video>
         )
       },
       hr: ({ value }) => {

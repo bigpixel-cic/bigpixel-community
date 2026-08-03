@@ -1,17 +1,18 @@
-import type { Metadata } from 'next';
-import { Outfit, Aleo } from 'next/font/google';
-import '@/styles/globals.css';
-
-import 'next-cloudinary/dist/cld-video-player.css';
-import { ConsentManager } from '../components/consent-manager';
+import '@/styles/globals.css'
+import type { Metadata } from 'next'
+import { Aleo, Outfit } from 'next/font/google'
 
 const bigPixel = {
   name: 'Big Pixel Community CIC',
-  url: process.env.NODE_ENV === 'production' ? 'https://bigpixel.org.uk' : 'http://localhost:3000',
-  title: 'Big Pixel | Digital Services for Charities, Non-Profits & Social Enterprises',
+  url:
+    process.env.NODE_ENV === 'production'
+      ? 'https://bigpixel.org.uk'
+      : 'http://localhost:3000',
+  title:
+    'Big Pixel | Digital Services for Charities, Non-Profits & Social Enterprises',
   description:
     "A social enterprise offering agency-level design and development to charities, non-profits and social enterprises, with fees scaled to your organisation's income",
-};
+}
 
 const keywords = [
   'digital services for charities',
@@ -24,19 +25,19 @@ const keywords = [
   'charity website Norfolk',
   'sliding scale web design',
   'CIC web design',
-];
+]
 
 const outfit = Outfit({
   subsets: ['latin'],
   variable: '--font-outfit',
   display: 'swap',
-});
+})
 
 const aleo = Aleo({
   subsets: ['latin'],
   variable: '--font-aleo',
   display: 'swap',
-});
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(bigPixel.url),
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-};
+}
 
 const organizationSchema = {
   '@context': 'https://schema.org',
@@ -92,7 +93,7 @@ const organizationSchema = {
     'https://www.instagram.com/bigpixelcic',
     'https://bsky.app/profile/bigpixelcic',
   ],
-};
+}
 
 const websiteSchema = {
   '@context': 'https://schema.org',
@@ -101,30 +102,43 @@ const websiteSchema = {
   url: bigPixel.url,
   description: bigPixel.description,
   publisher: { '@type': 'Organization', name: bigPixel.name },
-};
+}
 
 export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${aleo.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${outfit.variable} ${aleo.variable} h-full antialiased`}
+    >
       <head>
         <meta name="apple-mobile-web-app-title" content="Big Pixel" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        <script
+          async
+          src="https://plausible.io/js/pa-O2Ye9WPds2uF2AhJK4CAm.js"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+          plausible.init()`,
+          }}
+        />
       </head>
 
-      <body className="min-h-full flex flex-col">
-        <ConsentManager>{children}</ConsentManager>
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
-  );
+  )
 }
