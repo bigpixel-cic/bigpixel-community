@@ -6,6 +6,7 @@ import {
   type PortableTextBlock,
   type PortableTextComponents,
 } from 'next-sanity'
+import ReactPlayer from 'react-player'
 
 export default function CustomPortableText({
   className,
@@ -74,17 +75,15 @@ export default function CustomPortableText({
           return null
         }
         return (
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            id={value.public_id}
-            width={value.width}
-            height={value.height}
-          >
-            <source src={value.url} />
-          </video>
+          <div className="my-8">
+            <ReactPlayer
+              src={value.url}
+              width={1080}
+              height={720}
+              loop
+              playing
+            />
+          </div>
         )
       },
       hr: ({ value }) => {

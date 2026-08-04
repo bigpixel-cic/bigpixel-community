@@ -1,4 +1,4 @@
-import { defineQuery } from 'next-sanity';
+import { defineQuery } from 'next-sanity'
 
 export const PROJECTS_QUERY = defineQuery(
   `*[_type == "project" && defined(slug.current)][0...12]{
@@ -10,11 +10,11 @@ export const PROJECTS_QUERY = defineQuery(
     "altText": coverImage.alt,
     "dateModified": coalesce(_createdAt, _updatedAt),
   }`
-);
+)
 
 export const PROJECTS_SLUGS_QUERY = defineQuery(
   `*[_type == "project" && defined(slug.current)].slug.current`
-);
+)
 
 export const PROJECT_QUERY = defineQuery(
   `*[_type == "project" && slug.current == $slug][0]{
@@ -31,7 +31,7 @@ export const PROJECT_QUERY = defineQuery(
     "caseStudy": caseStudy.asset->url,
     content,
   }`
-);
+)
 
 export const PROJECT_METADATA_QUERY = defineQuery(
   `*[_type == "project" && slug.current == $slug][0]{
@@ -42,7 +42,7 @@ export const PROJECT_METADATA_QUERY = defineQuery(
     "generateOgImage": seo.generateOgImage,
     "ogImage": seo.ogImage.asset->url,
   }`
-);
+)
 
 export const POSTS_QUERY = defineQuery(
   `*[_type == "post" && defined(slug.current)][0...12]{
@@ -58,11 +58,11 @@ export const POSTS_QUERY = defineQuery(
       "imageUrl": picture.asset->url
     },
   }`
-);
+)
 
 export const POSTS_SLUGS_QUERY = defineQuery(
   `*[_type == "post" && defined(slug.current)].slug.current`
-);
+)
 
 export const POST_QUERY = defineQuery(
   `*[_type == "post" && slug.current == $slug][0]{
@@ -77,7 +77,7 @@ export const POST_QUERY = defineQuery(
     "altText": coverImage.altText,
     content,
   }`
-);
+)
 
 export const POST_METADATA_QUERY = defineQuery(
   `*[_type == "post" && slug.current == $slug][0]{
@@ -88,4 +88,4 @@ export const POST_METADATA_QUERY = defineQuery(
     "generateOgImage": seo.generateOgImage,
     "ogImage": seo.ogImage.asset->url,
   }`
-);
+)
